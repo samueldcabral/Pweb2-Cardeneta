@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Registro de aulas</title>
+</head>
+<body>
+<h1>Registrar aula</h1>
+
+<div class="container">
+	<form th:action="@{/aulas}" method="POST">
+		<div class="form-group">
+			<label for="assunto">Assunto da aula</label>
+			<input id="assunto" name="assunto" type="text" class="form-control" placeholder="Assunto"/>
+			<br/>
+			<label for="data">Data da aula</label>
+			<input id="data" name="data" type="date" class="form-control" placeholder="Data"/>
+			<br/>
+			<button type="submit" class="btn btn-primary">Submit</button>
+		</div>
+	</form>
+</div>
+</body>
+</html>
