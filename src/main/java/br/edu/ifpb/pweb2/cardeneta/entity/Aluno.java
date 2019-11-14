@@ -7,11 +7,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name="TB_ALUNO")
 public class Aluno extends Usuario {
-	
-	@Column(name="AL_NOME")
+
 	private String nome;
-	
-	@Column(name="AL_MATRICULA")
 	private String matricula;
 	
 

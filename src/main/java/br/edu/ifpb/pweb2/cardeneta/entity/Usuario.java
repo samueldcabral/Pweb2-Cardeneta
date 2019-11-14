@@ -16,14 +16,11 @@ public class Usuario implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@Column(name="NU_ID")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	
-	@Column(name="US_LOGIN")
 	private String login;
 	
-	@Column(name="US_SENHA")
 	private String senha;
 
 	public Integer getId() {
