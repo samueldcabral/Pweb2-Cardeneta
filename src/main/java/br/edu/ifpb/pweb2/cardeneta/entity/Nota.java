@@ -1,7 +1,5 @@
 package br.edu.ifpb.pweb2.cardeneta.entity;
 
-import java.util.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,47 +8,42 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="TB_AULA")
-public class Aula {
+@Table(name="TB_NOTA")
+public class Nota {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
-	private String assunto;
-	private Date data;
 	
 	@ManyToOne
 	private Turma turma;
 	
-	public Integer getId() {
-		return id;
-	}
-	
 	public Turma getTurma() {
 		return turma;
 	}
-	
+
 	public void setTurma(Turma turma) {
 		this.turma = turma;
 	}
-	
+
+	private String matriculaAluno;
+
+	public Integer getId() {
+		return id;
+	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	
-	public String getAssunto() {
-		return assunto;
+
+	public String getMatriculaAluno() {
+		return matriculaAluno;
+	}
+
+	public void setMatriculaAluno(String matriculaAluno) {
+		this.matriculaAluno = matriculaAluno;
 	}
 	
-	public void setAssunto(String assunto) {
-		this.assunto = assunto;
-	}
 	
-	public Date getData() {
-		return data;
-	}
-	
-	public void setData(Date data) {
-		this.data = data;
-	}
+
 }

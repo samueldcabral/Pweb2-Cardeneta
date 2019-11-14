@@ -11,9 +11,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="TB_DISCIPLINA")
-public class Disciplina {
-
+@Table(name="TB_PROFESSOR")
+public class Professor {
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
@@ -25,26 +25,21 @@ public class Disciplina {
 	public Integer getId() {
 		return id;
 	}
-	
+	public List<Turma> getTurmas() {
+		return turmas;
+	}
+	public void setTurmas(List<Turma> turmas) {
+		this.turmas = turmas;
+	}
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	
 	public String getNome() {
 		return nome;
 	}
-	
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
 
-	public List<Turma> getTurmas() {
-		return turmas;
-	}
-
-	public void setTurmas(List<Turma> turmas) {
-		this.turmas = turmas;
-	}
-	
 	
 }
