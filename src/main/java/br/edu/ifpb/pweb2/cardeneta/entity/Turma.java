@@ -9,6 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -19,10 +21,17 @@ public class Turma {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private String codigo;
 	
+	@ManyToOne
 	private Disciplina disciplina;	
+	
+	@OneToMany
 	private List<Aula> aulas = new ArrayList<>();
+	
+	@OneToMany
 	private List<Aluno> alunos = new ArrayList<Aluno>();
+	
 	private Map<String, String> notas = new HashMap<String, String>();
+	
 	public String getCodigo() {
 		return codigo;
 	}
