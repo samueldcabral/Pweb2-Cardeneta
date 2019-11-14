@@ -1,7 +1,5 @@
 package br.edu.ifpb.pweb2.cardeneta.entity;
 
-import java.io.Serializable;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,18 +7,14 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="TB_USUARIO")
-public class Usuario implements Serializable{
-	
-	private static final long serialVersionUID = 1L;
+@Table(name="TB_NOTA")
+public class Nota {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	
-	private String login;
-	
-	private String senha;
+	private int nota;
 
 	public Integer getId() {
 		return id;
@@ -30,20 +24,12 @@ public class Usuario implements Serializable{
 		this.id = id;
 	}
 
-	public String getLogin() {
-		return login;
+	public int getNota() {
+		return nota;
 	}
 
-	public void setLogin(String login) {
-		this.login = login;
-	}
-
-	public String getSenha() {
-		return senha;
-	}
-
-	public void setSenha(String senha) {
-		this.senha = senha;
+	public void setNota(int nota) {
+		this.nota = nota;
 	}
 	
 }
