@@ -7,6 +7,8 @@ import javax.persistence.Table;
 @Table(name="TB_COORDENADOR")
 public class Coordenador extends Professor{
 	
+	private static final long serialVersionUID = 1L;
+	
 	private Boolean ativo;
 
 	public Boolean getAtivo() {
