@@ -3,12 +3,9 @@ package br.edu.ifpb.pweb2.cardeneta.entity;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-@Entity
-@Table(name="TB_COORDENADOR")
-public class Coordenador extends Professor{
-	
-	private static final long serialVersionUID = 1L;
-	
+
+public class Coordenador {
+		
 	private Boolean ativo;
 
 	public Boolean getAtivo() {
