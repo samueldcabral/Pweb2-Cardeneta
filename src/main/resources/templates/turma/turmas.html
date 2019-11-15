@@ -16,11 +16,15 @@
 				<th>Codigo</th>
 				<th>Disciplina</th>
 				<th>Professor</th>
+				<th>Aluno</th>
+				
 			</tr>
 			<tr th:each="turma : ${turmas}">
 				<td th:text="${turma.codigo}"></td>
 				<td th:text="${turma.disciplina.nome}"></td>
 				<td th:text="${turma.professor.nome}"></td>
+				<td th:text="${turma.alunos[0].nome}"></td>
+				
 			</tr>
 		</table>
 	</div>

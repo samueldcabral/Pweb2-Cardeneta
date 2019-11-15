@@ -11,8 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-@Entity
-@Table(name="TB_USUARIO")
+//@Entity
+//@Table(name="TB_USUARIO")
 public class Usuario implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
