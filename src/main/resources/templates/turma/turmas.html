@@ -8,24 +8,24 @@
 </head>
 <body>
 
+	<div class="container mt-5">
 	<h1>Turmas cadastradas</h1>
-	<hr>
-	<div class="container">
-		<table class="tabel table-hover table-stripped">
-			<tr>
-				<th>Codigo</th>
-				<th>Disciplina</th>
-				<th>Professor</th>
-				<th>Aluno</th>
-				
-			</tr>
+	<br>
+		<table class="table table-hover table-stripped">
+			<thead class="thead-dark">
+				<tr>
+					<th scope="col">Codigo</th>
+					<th scope="col">Disciplina</th>
+					<th scope="col">Professor</th>
+				</tr>
+			</thead>
+			<tbody>
 			<tr th:each="turma : ${turmas}">
-				<td th:text="${turma.codigo}"></td>
+				<td scope="row" th:text="${turma.codigo}"></td>
 				<td th:text="${turma.disciplina.nome}"></td>
-				<td th:text="${turma.professor.nome}"></td>
-				<td th:text="${turma.alunos[0].nome}"></td>
-				
+				<td th:text="${turma.professor.nome}"></td>				
 			</tr>
+			</tbody>
 		</table>
 	</div>
 
