@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -26,6 +27,9 @@ public class Aluno {
 	
 	@OneToMany
 	private List<Nota> notas;
+	
+	@OneToOne
+	private Usuario usuario;
 
 	public List<Turma> getTurmas() {
 		return turmas;
