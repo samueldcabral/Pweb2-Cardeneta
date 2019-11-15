@@ -15,18 +15,13 @@ public class Nota {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	
+	private int nota;
+	
 	@ManyToOne
 	private Turma turma;
 	
-	public Turma getTurma() {
-		return turma;
-	}
-
-	public void setTurma(Turma turma) {
-		this.turma = turma;
-	}
-
-	private String matriculaAluno;
+	@ManyToOne
+	private Aluno aluno;
 
 	public Integer getId() {
 		return id;
@@ -36,14 +31,12 @@ public class Nota {
 		this.id = id;
 	}
 
-	public String getMatriculaAluno() {
-		return matriculaAluno;
+	public int getNota() {
+		return nota;
 	}
 
-	public void setMatriculaAluno(String matriculaAluno) {
-		this.matriculaAluno = matriculaAluno;
+	public void setNota(int nota) {
+		this.nota = nota;
 	}
 	
-	
-
 }

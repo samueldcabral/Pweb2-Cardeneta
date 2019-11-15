@@ -1,8 +1,8 @@
 package br.edu.ifpb.pweb2.cardeneta.entity;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,38 +13,36 @@ import javax.persistence.Table;
 @Entity
 @Table(name="TB_DISCIPLINA")
 public class Disciplina {
-
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer id;
+	private String codigo;
+	
 	private String nome;
+	private String curso;
 	
-	@OneToMany
-	private List<Turma> turmas = new ArrayList<Turma>();
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<Turma> turmas;
 	
-	public Integer getId() {
-		return id;
+	public String getCodigo() {
+		return codigo;
 	}
-	
-	public void setId(Integer id) {
-		this.id = id;
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
 	}
-	
 	public String getNome() {
 		return nome;
 	}
-	
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-
-	public List<Turma> getTurmas() {
-		return turmas;
+	public String getCurso() {
+		return curso;
 	}
-
-	public void setTurmas(List<Turma> turmas) {
-		this.turmas = turmas;
+	public void setCurso(String curso) {
+		this.curso = curso;
 	}
+	
 	
 	
 }

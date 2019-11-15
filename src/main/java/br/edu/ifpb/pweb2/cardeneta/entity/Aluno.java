@@ -1,19 +1,34 @@
 package br.edu.ifpb.pweb2.cardeneta.entity;
 
-import javax.persistence.Column;
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="TB_ALUNO")
 public class Aluno extends Usuario {
 	
-	@Column(name="AL_NOME")
-	private String nome;
+	private static final long serialVersionUID = 1L;
 	
-	@Column(name="AL_MATRICULA")
+	private String nome;
 	private String matricula;
 	
+	@ManyToMany(mappedBy="alunos")
+	private List<Turma> turmas;
+	
+	@OneToMany
+	private List<Nota> notas;
+
+	public List<Turma> getTurmas() {
+		return turmas;
+	}
+
+	public void setTurmas(List<Turma> turmas) {
+		this.turmas = turmas;
+	}
 
 	public String getNome() {
 		return nome;

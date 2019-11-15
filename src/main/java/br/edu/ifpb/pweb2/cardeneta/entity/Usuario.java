@@ -2,7 +2,6 @@ package br.edu.ifpb.pweb2.cardeneta.entity;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,14 +15,11 @@ public class Usuario implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@Column(name="NU_ID")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	
-	@Column(name="US_LOGIN")
 	private String login;
 	
-	@Column(name="US_SENHA")
 	private String senha;
 
 	public Integer getId() {
