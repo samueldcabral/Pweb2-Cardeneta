@@ -21,6 +21,8 @@ public class TurmaController {
 	private ModelAndView list(String disciplina) {
 		ModelAndView model = new ModelAndView("turma/turmas");
 		List<Turma> turmas = turmaRepository.findAll();
+//		Long id = (long) 2;
+//		List<Turma> turmas = turmaRepository.findByProfessorId(id);
 		model.addObject("turmas", turmas);
 		return model;
 	}
