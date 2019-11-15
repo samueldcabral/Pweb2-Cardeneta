@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -15,6 +16,12 @@ public class Nota {
 	private Integer id;
 	
 	private int nota;
+	
+	@ManyToOne
+	private Turma turma;
+	
+	@ManyToOne
+	private Aluno aluno;
 
 	public Integer getId() {
 		return id;

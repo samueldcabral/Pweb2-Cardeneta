@@ -9,6 +9,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -19,10 +22,19 @@ public class Turma {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private String codigo;
 	
+	@ManyToOne
 	private Disciplina disciplina;	
-	private List<Aula> aulas = new ArrayList<>();
-	private List<Aluno> alunos = new ArrayList<Aluno>();
-	private Map<String, String> notas = new HashMap<String, String>();
+	
+	@OneToMany
+	private List<Aula> aulas;
+	
+	@ManyToMany
+	private List<Aluno> alunos;
+	
+	@OneToMany
+	private List<Nota> notas;
+	//private Map<String, String> notas = new HashMap<String, String>();
+	
 	public String getCodigo() {
 		return codigo;
 	}
@@ -54,14 +66,22 @@ public class Turma {
 	public void setAlunos(List<Aluno> alunos) {
 		this.alunos = alunos;
 	}
-	
-	public Map<String, String> getNotas() {
+
+	public List<Nota> getNotas() {
 		return notas;
 	}
-	
-	public void setNotas(Map<String, String> notas) {
+
+	public void setNotas(List<Nota> notas) {
 		this.notas = notas;
 	}
+	
+//	public Map<String, String> getNotas() {
+//		return notas;
+//	}
+//	
+//	public void setNotas(Map<String, String> notas) {
+//		this.notas = notas;
+//	}
 	
 	
 }

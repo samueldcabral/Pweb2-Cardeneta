@@ -1,9 +1,13 @@
 package br.edu.ifpb.pweb2.cardeneta.entity;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -16,6 +20,9 @@ public class Disciplina {
 	
 	private String nome;
 	private String curso;
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<Turma> turmas;
 	
 	public String getCodigo() {
 		return codigo;

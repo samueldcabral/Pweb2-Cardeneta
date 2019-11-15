@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -17,6 +18,9 @@ public class Aula {
 	private Integer id;
 	private String assunto;
 	private Date data;
+	
+	@ManyToOne
+	private Turma turma;
 	
 	public Integer getId() {
 		return id;
