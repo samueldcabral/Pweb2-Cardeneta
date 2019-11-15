@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th ="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<title>Listagem de turmas</title>
+<link rel="stylesheet" th:href="@{style.css}" />
+</head>
+<body>
+
+	<h1>Turmas cadastradas</h1>
+	<hr>
+	<div class="container">
+		<table class="tabel table-hover table-stripped">
+			<tr>
+				<th>Codigo</th>
+				<th>Disciplina</th>
+				<th>Professor</th>
+			</tr>
+			<tr th:each="turma : ${turmas}">
+				<td th:text="${turma.codigo}"></td>
+				<td th:text="${turma.disciplina.nome}"></td>
+				<td th:text="${turma.professor.nome}"></td>
+			</tr>
+		</table>
+	</div>
+
+</body>
+</html>

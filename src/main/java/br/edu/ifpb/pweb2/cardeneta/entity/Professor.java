@@ -1,20 +1,34 @@
 package br.edu.ifpb.pweb2.cardeneta.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="TB_PROFESSOR")
-public class Professor extends Usuario{
+public class Professor {
+		
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Integer id;
 	
-	private static final long serialVersionUID = 1L;
+	@OneToOne
+	private Usuario usuario;
 	
 	private String nome;
 	private String email;
+	
     
     @OneToMany
-	private List<Turma> turmas = new ArrayList<Turma>();
-	
+	private List<Turma> turmas = new ArrayList<Turma>(); 
+    
 	public String getNome() {
 		return nome;
 	}

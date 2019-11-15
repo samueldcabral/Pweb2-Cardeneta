@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -18,12 +20,12 @@ public class Turma {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private String codigo;
+	private Integer codigo;
 	
 	@ManyToOne
 	private Disciplina disciplina;	
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	private Professor professor;
 	
 	@OneToMany
@@ -35,11 +37,11 @@ public class Turma {
 	@ManyToMany
 	private List<Aluno> alunos = new ArrayList<Aluno>();
 
-	public String getCodigo() {
+	public Integer getCodigo() {
 		return codigo;
 	}
 
-	public void setCodigo(String codigo) {
+	public void setCodigo(Integer codigo) {
 		this.codigo = codigo;
 	}
 

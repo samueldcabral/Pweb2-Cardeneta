@@ -16,7 +16,7 @@ public class Disciplina {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private String codigo;
+	private Integer codigo;
 	
 	private String nome;
 	private String curso;
@@ -24,10 +24,10 @@ public class Disciplina {
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<Turma> turmas;
 	
-	public String getCodigo() {
+	public Integer getCodigo() {
 		return codigo;
 	}
-	public void setCodigo(String codigo) {
+	public void setCodigo(Integer codigo) {
 		this.codigo = codigo;
 	}
 	public String getNome() {
