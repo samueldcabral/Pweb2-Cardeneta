@@ -17,13 +17,19 @@
 					<th scope="col">Codigo</th>
 					<th scope="col">Disciplina</th>
 					<th scope="col">Professor</th>
+					<th scope="col">Visualizar</th>
 				</tr>
 			</thead>
 			<tbody>
 			<tr th:each="turma : ${turmas}">
 				<td scope="row" th:text="${turma.codigo}"></td>
 				<td th:text="${turma.disciplina.nome}"></td>
-				<td th:text="${turma.professor.nome}"></td>				
+				<td th:text="${turma.professor.nome}"></td>		
+				<td>
+				<form action="#" th:action="@{/turmas/visualizarTurma/}+${turma.codigo}" th:object="${turma}" method="post">
+					<button class="btn btn-info" type="submit">Visualizar</button>
+				</form>
+				</td>		
 			</tr>
 			</tbody>
 		</table>
