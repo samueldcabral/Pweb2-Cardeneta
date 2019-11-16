@@ -25,18 +25,31 @@ public class Aula {
 	public Integer getId() {
 		return id;
 	}
+	
+	public Turma getTurma() {
+		return turma;
+	}
+	
+	public void setTurma(Turma turma) {
+		this.turma = turma;
+	}
+	
 	public void setId(Integer id) {
 		this.id = id;
 	}
+	
 	public String getAssunto() {
 		return assunto;
 	}
+	
 	public void setAssunto(String assunto) {
 		this.assunto = assunto;
 	}
+	
 	public Date getData() {
 		return data;
 	}
+	
 	public void setData(Date data) {
 		this.data = data;
 	}
