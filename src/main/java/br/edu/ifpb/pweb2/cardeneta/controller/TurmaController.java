@@ -46,7 +46,6 @@ public class TurmaController {
 			turma = opturma.get();
 		}
 		List<Aluno> alunos = turma.getAlunos();
-		System.out.println("AQYUIIIIIIIIIIIIIIIIIIIIIII "+alunos);
 		model.addAttribute("turma", turma);
 		model.addAttribute("alunos", alunos);
 		return "turma/turma";
