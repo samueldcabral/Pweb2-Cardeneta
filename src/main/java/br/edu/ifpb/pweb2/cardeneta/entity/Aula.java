@@ -17,7 +17,7 @@ public class Aula {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer id;
+	private Long id;
 	private String assunto;
 	private Date data;
 	
@@ -27,7 +27,7 @@ public class Aula {
 	@ManyToMany
 	private List<Aluno> alunosPresentes;
 	
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
@@ -39,7 +39,7 @@ public class Aula {
 		this.turma = turma;
 	}
 	
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	
@@ -65,6 +65,10 @@ public class Aula {
 
 	public void setAlunosPresentes(List<Aluno> alunosPresentes) {
 		this.alunosPresentes = alunosPresentes;
+	}
+	
+	public void addAlunosPresentes(Aluno alunoPresente) {
+		this.alunosPresentes.add(alunoPresente);
 	}
 	
 	

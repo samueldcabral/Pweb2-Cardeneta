@@ -99,6 +99,10 @@ public class Aluno implements Serializable {
 	public void setPresencas(List<Aula> presencas) {
 		this.presencas = presencas;
 	}
+	
+	public void addPresenca(Aula a) {
+		this.presencas.add(a);
+	}
 
 	
 }
