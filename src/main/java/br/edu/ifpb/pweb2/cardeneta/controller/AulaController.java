@@ -71,7 +71,6 @@ public class AulaController {
 	
 	@RequestMapping("/registrar")
 	public String registrar(Model model, String assunto, String date, String turma) {
-//		model.addAttribute("turma", turmaModel);
 		Aula aula = new Aula();
 		aula.setAssunto(assunto);
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
@@ -92,7 +91,13 @@ public class AulaController {
 		aulaRepository.save(aula);
 		turmaRepository.saveAndFlush(t);
 		aulaRepository.saveAndFlush(aula);
-		
-		return "redirect:/turmas/";
+		model.addAttribute("aula", aula);
+		model.addAttribute("turma", t);
+		return "aula/registrar-presenca";
+	}
+	
+	@RequestMapping("/registrar-presenca")
+	public String registrarPresenca(Model model) {
+		return "redirect:/turmas";
 	}
 }
