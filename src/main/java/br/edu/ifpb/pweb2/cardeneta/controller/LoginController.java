@@ -35,7 +35,7 @@ public class LoginController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public String validadeLogin(String login, String senha, String lembrar, HttpSession session, HttpServletRequest request, HttpServletResponse response, RedirectAttributes flash) {
+	public String validadeLogin(String login, String senha, String lembrar, HttpSession session, HttpServletRequest request, HttpServletResponse response, RedirectAttributes flash, Model model) {
 		String proxPagina = null;
         String letra = login.substring(0, 1);
         if (letra.equalsIgnoreCase("a")) {
@@ -54,6 +54,7 @@ public class LoginController {
         	}
         	if (login.equalsIgnoreCase(alunoBanco.getLogin()) && senha.equals(alunoBanco.getSenha())) {
         		session.setAttribute("aluno", alunoBanco);
+        		model.addAttribute("turmas-aluno", alunoBanco.getTurmas());
         		proxPagina = "redirect:disciplinas";
         	} else {
         		flash.addFlashAttribute("mensagem", "Login e/ou senha inválidos");
@@ -76,6 +77,7 @@ public class LoginController {
         	}
         	if (login.equalsIgnoreCase(professorBanco.getLogin()) && senha.equals(professorBanco.getSenha())) {
         		session.setAttribute("professor", professorBanco);
+        		model.addAttribute("turmas", professorBanco.getTurmas());
         		proxPagina = "redirect:turmas";
         	} else {
         		flash.addFlashAttribute("mensagem", "Login e/ou senha inválidos");

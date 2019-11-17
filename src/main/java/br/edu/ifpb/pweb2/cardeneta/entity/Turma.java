@@ -68,6 +68,11 @@ public class Turma {
 	public void setAulas(List<Aula> aulas) {
 		this.aulas = aulas;
 	}
+	
+	public void addAulas(Aula aula) {
+		this.aulas.add(aula);
+	}
+
 
 	public List<Nota> getNotas() {
 		return notas;
@@ -76,6 +81,10 @@ public class Turma {
 	public void setNotas(List<Nota> notas) {
 		this.notas = notas;
 	}
+	
+	public void addNotas(Nota nota) {
+		this.notas.add(nota);
+	}
 
 	public List<Aluno> getAlunos() {
 		return alunos;
@@ -83,6 +92,10 @@ public class Turma {
 
 	public void setAlunos(List<Aluno> alunos) {
 		this.alunos = alunos;
+	}
+	
+	public void addAlunos(Aluno alunos) {
+		this.alunos.add(alunos);
 	}
 	
 }

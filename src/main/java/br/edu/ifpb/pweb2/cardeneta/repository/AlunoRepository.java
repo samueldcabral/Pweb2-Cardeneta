@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import br.edu.ifpb.pweb2.cardeneta.entity.Aluno;
 import br.edu.ifpb.pweb2.cardeneta.entity.Professor;
 
-public interface AlunoRepository extends JpaRepository<Professor, Long>{
+public interface AlunoRepository extends JpaRepository<Aluno, Long>{
 
 	Aluno findByLogin(String login);
 
