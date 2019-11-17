@@ -2,6 +2,7 @@ package br.edu.ifpb.pweb2.cardeneta.entity;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,7 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -32,6 +32,9 @@ public class Aluno implements Serializable {
 	
 	@OneToMany
 	private List<Nota> notas;
+	
+	@ManyToMany
+	private List<Aula> presencas;
 
 	public List<Turma> getTurmas() {
 		return turmas;
@@ -87,6 +90,14 @@ public class Aluno implements Serializable {
 
 	public void setNotas(List<Nota> notas) {
 		this.notas = notas;
+	}
+
+	public List<Aula> getPresencas() {
+		return presencas;
+	}
+
+	public void setPresencas(List<Aula> presencas) {
+		this.presencas = presencas;
 	}
 
 	

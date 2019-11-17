@@ -1,11 +1,13 @@
 package br.edu.ifpb.pweb2.cardeneta.entity;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -22,10 +24,13 @@ public class Aula {
 	@ManyToOne
 	private Turma turma;
 	
+	@ManyToMany
+	private List<Aluno> alunosPresentes;
+	
 	public Integer getId() {
 		return id;
 	}
-	
+
 	public Turma getTurma() {
 		return turma;
 	}
@@ -53,4 +58,14 @@ public class Aula {
 	public void setData(Date data) {
 		this.data = data;
 	}
+
+	public List<Aluno> getAlunosPresentes() {
+		return alunosPresentes;
+	}
+
+	public void setAlunosPresentes(List<Aluno> alunosPresentes) {
+		this.alunosPresentes = alunosPresentes;
+	}
+	
+	
 }
