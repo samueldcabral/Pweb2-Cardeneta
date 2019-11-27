@@ -24,7 +24,8 @@ public class Aula implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	private String assunto;
-	@DateTimeFormat(pattern = "dd-MM-yyyy")
+
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date data;
 	
 	@ManyToOne
