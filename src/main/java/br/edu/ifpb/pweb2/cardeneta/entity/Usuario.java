@@ -11,31 +11,31 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-//@Entity
-//@Table(name="TB_USUARIO")
+@Entity
+@Table(name="TB_USUARIO")
 public class Usuario implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer id;
+	private Long id;
 	
 	private String login;
 	
 	private String senha;
 	
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(mappedBy="usuario", cascade = CascadeType.ALL)
 	private List<Aluno> alunos;
 	
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(mappedBy="usuario", cascade = CascadeType.ALL)
 	private List<Professor> professores;
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

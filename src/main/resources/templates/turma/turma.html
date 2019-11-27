@@ -4,7 +4,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <title>Listagem de alunos</title>
-<link rel="stylesheet" th:href="@{style.css}" />
 </head>
 <body>
 
@@ -12,7 +11,7 @@
 	<h1>Alunos da turma</h1>
 	<br>
 	<h3 th:text="${turma.disciplina.nome}"></h3>
-	<form action="#" th:action="@{/aulas/adicionar}" method="get">
+	<form action="#" th:action="@{/aula/adicionar/}+${turma.codigo}" method="get">
 		<button class="btn btn-info" type="submit">Adicionar Aula</button>
 	</form>
 	<br>

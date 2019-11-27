@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -23,47 +24,66 @@ public class Professor implements Serializable {
 	
 	private String nome;
 	private String email;	
-	private String login;
-	private String senha;
+//	private String login;
+//	private String senha;
 	
     @OneToMany
 	private List<Turma> turmas = new ArrayList<Turma>(); 
     
+    @OneToOne
+    private Usuario usuario;
+    
 	public String getNome() {
 		return nome;
 	}
+	
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+	
 	public String getEmail() {
 		return email;
 	}
+	
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
     public List<Turma> getTurmas() {
 		return turmas;
 	}
+    
 	public void setTurmas(List<Turma> turmas) {
 		this.turmas = turmas;
 	}
+	
 	public Long getId() {
 		return id;
 	}
+	
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getLogin() {
-		return login;
+
+	public Usuario getUsuario() {
+		return usuario;
 	}
-	public void setLogin(String login) {
-		this.login = login;
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
-	public String getSenha() {
-		return senha;
-	}
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
+	
+//	public String getLogin() {
+//		return login;
+//	}
+//	public void setLogin(String login) {
+//		this.login = login;
+//	}
+//	public String getSenha() {
+//		return senha;
+//	}
+//	public void setSenha(String senha) {
+//		this.senha = senha;
+//	}
 	
 }

@@ -6,6 +6,6 @@ import br.edu.ifpb.pweb2.cardeneta.entity.Professor;
 
 public interface ProfessorRepository extends JpaRepository<Professor, Long>{
 
-	Professor findByLogin(String login);
+	Professor findByUsuarioId(Long id);
 
 }
