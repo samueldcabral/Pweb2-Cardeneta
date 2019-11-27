@@ -7,16 +7,17 @@ import java.util.Optional;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.edu.ifpb.pweb2.cardeneta.entity.Aluno;
 import br.edu.ifpb.pweb2.cardeneta.entity.Aula;
+import br.edu.ifpb.pweb2.cardeneta.entity.Professor;
 import br.edu.ifpb.pweb2.cardeneta.entity.Turma;
 import br.edu.ifpb.pweb2.cardeneta.repository.AlunoRepository;
 import br.edu.ifpb.pweb2.cardeneta.repository.AulaRepository;
@@ -25,7 +26,7 @@ import br.edu.ifpb.pweb2.cardeneta.repository.TurmaRepository;
 @Controller
 @RequestMapping("/aula")
 public class AulaController {
-	
+
 	@Autowired
 	private TurmaRepository turmaRepository;
 	
@@ -36,7 +37,7 @@ public class AulaController {
 	private AlunoRepository alunoRepository;
 
 	@RequestMapping("/adicionar/{codigo}")
-	public String paginaRegistro(@PathVariable Integer codigo, Model model, HttpServletRequest request) {
+	public String paginaRegistro(@PathVariable String codigo, Model model, HttpServletRequest request, HttpSession session) {
 //		ModelAndView model = new ModelAndView("aula/registrar");
 		String login = "";
 		for (Cookie cookie : request.getCookies()) {
@@ -44,12 +45,12 @@ public class AulaController {
 				login = cookie.getValue();
 			}
 		}
-        String letra = login.substring(0, 1);
-        if (!letra.equalsIgnoreCase("p")) {
+		Professor professor = (Professor) session.getAttribute("professor");
+
+        if (professor == null) {
         	return "redirect:disciplinas";        	
         } 
-        
-        Optional<Turma> opturma = turmaRepository.findById(codigo);
+        Optional<Turma> opturma = turmaRepository.findTurmaByCodigo(Long.parseLong(codigo));
 		Turma turma = null;
 		if (opturma.isPresent()) {
 			turma = opturma.get();
@@ -86,7 +87,7 @@ public class AulaController {
 			e.printStackTrace();
 		}
 		aula.setData(data);
-		Optional<Turma> opT = turmaRepository.findById(Integer.parseInt(turma));
+		Optional<Turma> opT = turmaRepository.findTurmaByCodigo(Long.parseLong(turma));
 		Turma t = null;
 		if (opT.isPresent()) {
 			t = opT.get();

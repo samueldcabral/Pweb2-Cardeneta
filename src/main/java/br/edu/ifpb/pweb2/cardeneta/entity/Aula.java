@@ -24,7 +24,7 @@ public class Aula implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	private String assunto;
-
+	
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date data;
 	
@@ -37,7 +37,7 @@ public class Aula implements Serializable {
 	public Long getId() {
 		return id;
 	}
-
+	
 	public Turma getTurma() {
 		return turma;
 	}
@@ -65,7 +65,7 @@ public class Aula implements Serializable {
 	public void setData(Date data) {
 		this.data = data;
 	}
-
+	
 	public List<Aluno> getAlunosPresentes() {
 		return alunosPresentes;
 	}
@@ -77,6 +77,5 @@ public class Aula implements Serializable {
 	public void addAlunosPresentes(Aluno alunoPresente) {
 		this.alunosPresentes.add(alunoPresente);
 	}
-	
 	
 }

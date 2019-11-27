@@ -2,7 +2,6 @@ package br.edu.ifpb.pweb2.cardeneta.entity;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.Map;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -24,14 +24,17 @@ public class Aluno implements Serializable {
 	
 	private String nome;
 	private String matricula;
-	private String login;
-	private String senha;
+//	private String login;
+//	private String senha;
 	
 	@ManyToMany(mappedBy="alunos")
 	private List<Turma> turmas;
 	
 	@OneToMany
 	private List<Nota> notas;
+	
+	@OneToOne
+	private Usuario usuario;
 	
 	@ManyToMany
 	private List<Aula> presencas;
@@ -43,7 +46,7 @@ public class Aluno implements Serializable {
 	public void setTurmas(List<Turma> turmas) {
 		this.turmas = turmas;
 	}
-
+	
 	public String getNome() {
 		return nome;
 	}
@@ -68,20 +71,28 @@ public class Aluno implements Serializable {
 		this.id = id;
 	}
 
-	public String getLogin() {
-		return login;
+//	public String getLogin() {
+//		return login;
+//	}
+//
+//	public void setLogin(String login) {
+//		this.login = login;
+//	}
+//
+//	public String getSenha() {
+//		return senha;
+//	}
+//
+//	public void setSenha(String senha) {
+//		this.senha = senha;
+//	}
+
+	public Usuario getUsuario() {
+		return usuario;
 	}
 
-	public void setLogin(String login) {
-		this.login = login;
-	}
-
-	public String getSenha() {
-		return senha;
-	}
-
-	public void setSenha(String senha) {
-		this.senha = senha;
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 	public List<Nota> getNotas() {
@@ -92,6 +103,10 @@ public class Aluno implements Serializable {
 		this.notas = notas;
 	}
 
+	public void addPresenca(Aula a) {
+		this.presencas.add(a);
+	}
+	
 	public List<Aula> getPresencas() {
 		return presencas;
 	}
@@ -100,9 +115,5 @@ public class Aluno implements Serializable {
 		this.presencas = presencas;
 	}
 	
-	public void addPresenca(Aula a) {
-		this.presencas.add(a);
-	}
-
 	
 }

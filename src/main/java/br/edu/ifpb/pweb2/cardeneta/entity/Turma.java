@@ -20,7 +20,7 @@ public class Turma {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer codigo;
+	private Long codigo;
 	
 	@ManyToOne
 	private Disciplina disciplina;	
@@ -37,11 +37,11 @@ public class Turma {
 	@ManyToMany
 	private List<Aluno> alunos = new ArrayList<Aluno>();
 
-	public Integer getCodigo() {
+	public Long getCodigo() {
 		return codigo;
 	}
 
-	public void setCodigo(Integer codigo) {
+	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
 	}
 
@@ -68,11 +68,10 @@ public class Turma {
 	public void setAulas(List<Aula> aulas) {
 		this.aulas = aulas;
 	}
-	
+
 	public void addAulas(Aula aula) {
 		this.aulas.add(aula);
 	}
-
 
 	public List<Nota> getNotas() {
 		return notas;
