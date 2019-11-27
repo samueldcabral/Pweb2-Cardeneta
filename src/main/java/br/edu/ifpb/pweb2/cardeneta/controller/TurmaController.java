@@ -37,7 +37,7 @@ public class TurmaController {
 		ModelAndView model = new ModelAndView("turma/turmas");
 		String loginId = "";
 		for (Cookie cookie : request.getCookies()) {
-			if (cookie.getName().equals("cloginId")) {
+			if (cookie.getName().equals("clogin")) {
 				loginId = cookie.getValue();
 			}
 		}

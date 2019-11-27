@@ -33,9 +33,9 @@ public class LoginController {
 	private UsuarioRepository usuarioRepository;
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public String loginForm(Model model, @CookieValue(value = "cloginId", defaultValue = "") String cloginId) {
+	public String loginForm(Model model, @CookieValue(value = "clogin", defaultValue = "") String clogin) {
 		Usuario user = new Usuario();
-		user.setLogin(cloginId);
+		user.setLogin(clogin);
         model.addAttribute(user);	
 		return "login/login";
 	}
@@ -45,11 +45,11 @@ public class LoginController {
 		String proxPagina = null;
 		Usuario usuarioBanco = usuarioRepository.findByLogin(user.getLogin());
 		if (lembrar != null && lembrar.equalsIgnoreCase("sim")) {
-			Cookie cookie = new Cookie("cloginId", user.getLogin());
+			Cookie cookie = new Cookie("clogin", user.getLogin());
 			response.addCookie(cookie);
 		} else {
 			for (Cookie cookie : request.getCookies()) {
-				if (cookie.getName().equals("cloginId")) {
+				if (cookie.getName().equals("clogin")) {
 					cookie.setValue(null);
 					cookie.setMaxAge(0);
 					response.addCookie(cookie);
