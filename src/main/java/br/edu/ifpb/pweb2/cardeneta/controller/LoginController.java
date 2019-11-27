@@ -40,50 +40,72 @@ public class LoginController {
         String letra = login.substring(0, 1);
         if (letra.equalsIgnoreCase("a")) {
         	Aluno alunoBanco = alunoRepository.findByLogin(login);
-        	if (lembrar != null && lembrar.equalsIgnoreCase("sim")) {
-        		Cookie cookie = new Cookie("clogin", login);
-        		response.addCookie(cookie);
-        	} else {
+          
+          if (alunoBanco != null) {
+            
+            if (lembrar != null && lembrar.equalsIgnoreCase("sim")) {
+              Cookie cookie = new Cookie("clogin", login);
+              response.addCookie(cookie);
+            } else {
         		for (Cookie cookie: request.getCookies()) {
         			if (cookie.getName().equals("clogin")) {
         				cookie.setValue(null);
         				cookie.setMaxAge(0);
         				response.addCookie(cookie);
         			}
-        		}
-        	}
-        	if (login.equalsIgnoreCase(alunoBanco.getLogin()) && senha.equals(alunoBanco.getSenha())) {
+        		}            		
+            }
+
+            if (login.equalsIgnoreCase(alunoBanco.getLogin()) && senha.equals(alunoBanco.getSenha())) {
         		session.setAttribute("aluno", alunoBanco);
         		model.addAttribute("turmas-aluno", alunoBanco.getTurmas());
         		proxPagina = "redirect:disciplinas";
-        	} else {
-        		flash.addFlashAttribute("mensagem", "Login e/ou senha inválidos");
+        	  } else {
+	            flash.addFlashAttribute("mensagem", "Login e/ou senha inválidos");
         		flash.addFlashAttribute("aluno", login);
         		proxPagina = "redirect:login";
-        	}
+          }
+          } else {
+	          flash.addFlashAttribute("mensagem", "Login e/ou senha inválidos");
+	    	  flash.addFlashAttribute("aluno", login);
+	    	  proxPagina = "redirect:login";
+          }
+
         } else if (letra.equalsIgnoreCase("p")) {
         	Professor professorBanco = professorRepository.findByLogin(login);
-        	if (lembrar != null && lembrar.equalsIgnoreCase("sim")) {
-        		Cookie cookie = new Cookie("clogin", login);
-        		response.addCookie(cookie);
-        	} else {
-        		for (Cookie cookie: request.getCookies()) {
-        			if (cookie.getName().equals("clogin")) {
-        				cookie.setValue(null);
-        				cookie.setMaxAge(0);
-        				response.addCookie(cookie);
-        			}
-        		}
-        	}
-        	if (login.equalsIgnoreCase(professorBanco.getLogin()) && senha.equals(professorBanco.getSenha())) {
-        		session.setAttribute("professor", professorBanco);
-        		model.addAttribute("turmas", professorBanco.getTurmas());
-        		proxPagina = "redirect:turmas";
-        	} else {
-        		flash.addFlashAttribute("mensagem", "Login e/ou senha inválidos");
-        		flash.addFlashAttribute("professor", login);
-        		proxPagina = "redirect:login";
-        	}
+
+          if (professorBanco != null) {
+
+            if (lembrar != null && lembrar.equalsIgnoreCase("sim")) {
+              Cookie cookie = new Cookie("clogin", login);
+              response.addCookie(cookie);
+            } else if (request.getCookies() != null) {   	
+              for (Cookie cookie: request.getCookies()) {
+                if (cookie.getName().equals("clogin")) {
+                  cookie.setValue(null);
+                  cookie.setMaxAge(0);
+                  response.addCookie(cookie);
+                }
+              }	
+            }
+            
+            if (login.equalsIgnoreCase(professorBanco.getLogin()) && senha.equals(professorBanco.getSenha())) {
+              session.setAttribute("professor", professorBanco);
+              model.addAttribute("turmas", professorBanco.getTurmas());
+              proxPagina = "redirect:turmas";
+            } else {
+              flash.addFlashAttribute("mensagem", "Login e/ou senha inválidos");
+              flash.addFlashAttribute("professor", login);
+              proxPagina = "redirect:login";
+            }
+          } else {
+              flash.addFlashAttribute("mensagem", "Login e/ou senha inválidos");
+              flash.addFlashAttribute("professor", login);
+              proxPagina = "redirect:login";
+          }
+        } else {
+            flash.addFlashAttribute("mensagem", "Login e/ou senha inválidos");
+            proxPagina = "redirect:/login";
         }
         return proxPagina;
 

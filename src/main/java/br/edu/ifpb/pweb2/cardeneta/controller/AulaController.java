@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import br.edu.ifpb.pweb2.cardeneta.entity.Aluno;
 import br.edu.ifpb.pweb2.cardeneta.entity.Aula;
 import br.edu.ifpb.pweb2.cardeneta.entity.Turma;
+import br.edu.ifpb.pweb2.cardeneta.repository.AlunoRepository;
 import br.edu.ifpb.pweb2.cardeneta.repository.AulaRepository;
 import br.edu.ifpb.pweb2.cardeneta.repository.TurmaRepository;
 
@@ -29,6 +31,9 @@ public class AulaController {
 	
 	@Autowired
 	private AulaRepository aulaRepository;
+	
+	@Autowired
+	private AlunoRepository alunoRepository;
 
 	@RequestMapping("/adicionar/{codigo}")
 	public String paginaRegistro(@PathVariable Integer codigo, Model model, HttpServletRequest request) {
@@ -73,7 +78,7 @@ public class AulaController {
 	public String registrar(Model model, String assunto, String date, String turma) {
 		Aula aula = new Aula();
 		aula.setAssunto(assunto);
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
 		Date data = null;
 		try {
 			data = new java.sql.Date(format.parse(date).getTime());
@@ -96,8 +101,19 @@ public class AulaController {
 		return "aula/registrar-presenca";
 	}
 	
-	@RequestMapping("/registrar-presenca")
-	public String registrarPresenca(Model model) {
-		return "redirect:/turmas";
+	@RequestMapping("/registrar-presenca/{id}")
+	public void registrarPresenca(@PathVariable Long id, Long alunoId, Model model) {
+		Optional<Aula> aulaOp = aulaRepository.findById(id);
+		Aula aula = aulaOp.get();
+		
+		Optional<Aluno> alunoOp = alunoRepository.findById(alunoId);
+		Aluno aluno = alunoOp.get();
+		
+		aula.addAlunosPresentes(aluno);
+		aluno.addPresenca(aula);
+		aulaRepository.save(aula);
+		alunoRepository.save(aluno);
+		alunoRepository.flush();
+		aulaRepository.flush();
 	}
 }

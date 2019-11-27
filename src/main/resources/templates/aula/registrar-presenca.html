@@ -14,7 +14,7 @@
 		</div>
 		<div class="col-8">
 			<h2 th:text="${aula.assunto}"></h2>
-			<form th:action="@{/aula/registrar-presenca}" method="POST">
+			<form th:action="@{/aula/registrar-presenca/}+${aula.id}" method="POST"  >
 			<table class="table table-hover table-stripped">
 				<thead class="thead-dark">
 					<tr>
@@ -25,14 +25,17 @@
 				</thead>
 				<tbody>
 				<tr th:each="aluno : ${turma.alunos}">
-					<td scope="row" th:text="${aluno.matricula}"></td>
-					<td th:text="${aluno.nome}"></td>	
-					<td><input class="form-control m-auto w-25" type="text" id="presenca" name="presenca" /></td>
+						<td scope="row" th:text="${aluno.matricula}"></td>
+						<td th:text="${aluno.nome}"></td>	
+						<td>
+						<input type="text" name="alunoId" id="alunoId" th:value="${aluno.id}" hidden="true" />
+						<button class="btn btn-info m-auto" type="submit" id="presenca" name="presenca">Presente</button>
+						</td>
 				</tr>
 				</tbody>
 			</table>
-			<button type="submit" class="btn btn-info">Registrar</button>
 			</form>
+			<button type="submit" class="btn btn-info">Registrar</button>
 		</div>
 		<div class="col-2">
 		</div>
