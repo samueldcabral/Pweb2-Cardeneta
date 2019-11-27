@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import br.edu.ifpb.pweb2.cardeneta.entity.Aluno;
 import br.edu.ifpb.pweb2.cardeneta.entity.Professor;
 import br.edu.ifpb.pweb2.cardeneta.entity.Usuario;
 import br.edu.ifpb.pweb2.cardeneta.repository.AlunoRepository;
@@ -59,10 +60,16 @@ public class LoginController {
 		if (user.getLogin().equals(usuarioBanco.getLogin()) && user.getSenha().equals(usuarioBanco.getSenha())) {
 			
 			Professor prof = professorRepository.findByUsuarioId(Long.parseLong(usuarioBanco.getId().toString()));
-			if (prof != null) {
+			Aluno alu = alunoRepository.findByUsuarioId(Long.parseLong(usuarioBanco.getId().toString()));
+			if (prof != null && alu == null) {
 				session.setAttribute("professor", prof);
 				proxPagina = "redirect:turmas";
-			} 
+			} else if (alu != null && prof == null) {
+				session.setAttribute("aluno", alu);
+				proxPagina = "redirect:disciplinas";
+			} else {
+				proxPagina = "redirect:login";
+			}
 		} else {
 			flash.addFlashAttribute("mensagem", "Login e/ou senha inválidos.");
 			flash.addFlashAttribute("usuario", user);
