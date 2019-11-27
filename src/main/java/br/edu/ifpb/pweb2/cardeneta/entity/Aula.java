@@ -1,5 +1,6 @@
 package br.edu.ifpb.pweb2.cardeneta.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -11,14 +12,19 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Table(name="TB_AULA")
-public class Aula {
+public class Aula implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	private String assunto;
+	@DateTimeFormat(pattern = "dd-MM-yyyy")
 	private Date data;
 	
 	@ManyToOne

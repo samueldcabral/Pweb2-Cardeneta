@@ -78,7 +78,7 @@ public class AulaController {
 	public String registrar(Model model, String assunto, String date, String turma) {
 		Aula aula = new Aula();
 		aula.setAssunto(assunto);
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
 		Date data = null;
 		try {
 			data = new java.sql.Date(format.parse(date).getTime());
