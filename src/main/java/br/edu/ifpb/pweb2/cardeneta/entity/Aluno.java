@@ -114,6 +114,13 @@ public class Aluno implements Serializable {
 	public void setPresencas(List<Aula> presencas) {
 		this.presencas = presencas;
 	}
+
+	@Override
+	public String toString() {
+		return "Aluno [id=" + id + ", nome=" + nome + ", matricula=" + matricula + ", turmas=" + turmas + ", notas="
+				+ notas + ", usuario=" + usuario + ", presencas=" + presencas + "]";
+	}
+	
 	
 	
 }
