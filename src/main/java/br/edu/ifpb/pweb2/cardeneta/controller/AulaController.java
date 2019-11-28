@@ -111,9 +111,7 @@ public class AulaController {
 		aulaRepository.save(aula);
 		aulaRepository.flush();
 
-		System.out.println(alunos);
 		for (Aluno aluno : alunos) {
-			System.out.println(aluno.getNome());	
 			aluno.addPresenca(aula);
 			alunoRepository.save(aluno);
 			alunoRepository.flush();
