@@ -12,7 +12,7 @@
 		<div class="col-3">
 		</div>
 		<div class="col-6">
-			<form th:action="@{/login}" method="POST" class="card p-5 m-auto">
+			<form action="#" th:action="@{/login}" method="POST" class="card p-5 m-auto" th:object="${usuario}">
 				<h3>Login</h3>
 				<div th:if="${mensagem ne null}" style="color:red; text-align:center"><p th:text="${mensagem}"></p></div>
 				<hr>
