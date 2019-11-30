@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th ="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" th:href="@{/myCustom.css}">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<title>Disciplinas</title>
+</head>
+<body>
+	<nav class="navbar navbar-light" id="bg-custom">
+	  <a class="navbar-brand mb-0 h1 text-light" th:href="@{/coordenador}">Cardeneta</a>
+	  <form class="form-inline">
+	    <a class="btn btn-outline-light my-2 my-sm-0" th:href="@{/login}">Logout, coordenador</a>
+	  </form>
+	</nav>
+	
+	<h1 class="mx-auto text-center mt-5">Disciplinas</h1>
+	
+	<div class="container">
+	
+		<a th:href="@{/disciplinas/cadastrar}" class="card-link btn btn-primary mt-2">Cadastrar disciplina</a>
+		
+		<table class="table table-hover table-stripped mt-3">
+			<thead class="thead-light">
+				<tr>
+					<th scope="col">Curso</th>
+					<th scope="col">Nome</th>
+				</tr>
+			</thead>
+			<tbody>
+			<tr th:each="disciplina : ${disciplinas}">
+				<td scope="row" th:text="${disciplina.curso}"></td>
+				<td th:text="${disciplina.nome}"></td>	
+			</tr>
+			</tbody>
+		</table>
+	</div>
+
+</body>
+</html>

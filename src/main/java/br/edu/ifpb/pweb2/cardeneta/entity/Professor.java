@@ -23,11 +23,20 @@ public class Professor implements Serializable {
 	private Long id;
 	
 	private String nome;
-	private String email;	
+	private String email;
+	private Boolean isCoordenador;
 //	private String login;
 //	private String senha;
 	
-    @OneToMany
+    public Boolean IsCoordenador() {
+		return isCoordenador;
+	}
+
+	public void setCoordenador(Boolean isCoordenador) {
+		this.isCoordenador = isCoordenador;
+	}
+
+	@OneToMany
 	private List<Turma> turmas = new ArrayList<Turma>(); 
     
     @OneToOne
@@ -55,6 +64,10 @@ public class Professor implements Serializable {
     
 	public void setTurmas(List<Turma> turmas) {
 		this.turmas = turmas;
+	}
+	
+	public void addTurmas(Turma turmas) {
+		this.turmas.add(turmas);
 	}
 	
 	public Long getId() {

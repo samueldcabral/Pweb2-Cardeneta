@@ -1,5 +1,7 @@
 package br.edu.ifpb.pweb2.cardeneta.controller;
 
+import java.util.Optional;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -61,9 +63,15 @@ public class LoginController {
 			
 			Professor prof = professorRepository.findByUsuarioId(Long.parseLong(usuarioBanco.getId().toString()));
 			Aluno alu = alunoRepository.findByUsuarioId(Long.parseLong(usuarioBanco.getId().toString()));
+			
 			if (prof != null && alu == null) {
 				session.setAttribute("professor", prof);
-				proxPagina = "redirect:turmas";
+				System.out.println("login professor is " + prof.getNome() + " " + prof.getId());
+				if(prof.IsCoordenador()) {
+					proxPagina = "redirect:coordenador";
+				}else {
+					proxPagina = "redirect:turmas";
+				}
 			} else if (alu != null && prof == null) {
 				session.setAttribute("aluno", alu);
 				proxPagina = "redirect:disciplinas";

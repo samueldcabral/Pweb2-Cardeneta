@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th ="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<link rel="stylesheet" th:href="@{/myCustom.css}">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+</head>
+<title>Coordenador</title>
+</head>
+<body class="bg-light">
+<nav class="navbar navbar-light bg-custom" id="bg-custom">
+  <a class="navbar-brand mb-0 h1 text-light" th:href="@{/coordenador}">Cardeneta</a>
+  <form class="form-inline">
+    <a class="btn btn-outline-light my-2 my-sm-0" th:href="@{/login}">Logout, coordenador</a>
+  </form>
+</nav>
+
+<h1 class="mx-auto text-center mt-5">Menu de ações</h1>
+
+<div class="container mt-5">
+	<div class="row">
+	
+		<div class="card col-sm" style="width: 18rem;">
+		  <div class="card-body">
+		    <h5 class="card-title">Cadastrar disciplina</h5>
+		    <h6 class="card-subtitle mb-2 text-muted">Você pode visualizar após o cadastro</h6> 
+		    <a th:href="@{/disciplinas/cadastrar}" class="card-link btn btn-outline-primary mt-5">Cadastrar</a>
+		  </div>
+		</div>
+		
+		<div class="card col-sm" style="width: 18rem;">
+		  <div class="card-body">
+		    <h5 class="card-title">Cadastrar professor em disciplina</h5>
+		    <h6 class="card-subtitle mb-2 text-muted">Você pode adicionar um professor</h6> 
+		    <a href="#" class="card-link btn btn-outline-primary mt-5">Cadastrar</a>
+		  </div>
+		</div>
+		
+		<div class="card col-sm" style="width: 18rem;">
+		  <div class="card-body">
+		    <h5 class="card-title">Visualizar disciplinas</h5>
+		    <h6 class="card-subtitle mb-2 text-muted">Somente o coordenador pode fazer isto</h6> 
+		    <a th:href="@{/disciplinas}" class="card-link btn btn-outline-primary mt-5">Visualizar</a>
+		  </div>
+		</div>
+		
+	</div>
+</div>
+</body>
+</html>
