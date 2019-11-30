@@ -33,7 +33,7 @@
 				<td th:text="${turma.professor.nome}"></td>		
 				<td>
 				<form action="#" th:action="@{/turmas/visualizarTurma/}+${turma.codigo}" th:object="${turma}" method="post">
-					<button class="btn btn-outline-info" type="submit">Visualizar</button>
+					<button class="btn btn-outline-primary" type="submit">Visualizar</button>
 				</form>
 				</td>		
 			</tr>
