@@ -4,12 +4,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/alunos")
-public class AlunoController {
+@RequestMapping("/professor")
+public class ProfessorController {
 
 	@RequestMapping
-	public String listar(String turma) {
-		return "aulaRegistro";
+	public String loginForm() {
+		return "professor/professor";
 	}
-
 }

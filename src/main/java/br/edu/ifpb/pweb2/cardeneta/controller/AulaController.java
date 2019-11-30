@@ -61,6 +61,7 @@ public class AulaController {
 		return "aula/form-registro";
 	}
 	
+	
 //	public String paginaRegistro(@ModelAttribute Turma turma, Model model, HttpServletRequest request) {
 ////		ModelAndView model = new ModelAndView("aula/registrar");
 //		String login = "";
@@ -116,6 +117,6 @@ public class AulaController {
 			alunoRepository.save(aluno);
 			alunoRepository.flush();
 		}
-		return "teste/index";
+		return "redirect:/turmas";
 	}
 }

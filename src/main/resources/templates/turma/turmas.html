@@ -4,10 +4,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <title>Listagem de turmas</title>
-<link rel="stylesheet" th:href="@{style.css}" />
+<link rel="stylesheet" th:href="@{/myCustom.css}">
 </head>
 <body>
 
+	<nav class="navbar navbar-light bg-custom" id="bg-custom">
+	  <a class="navbar-brand mb-0 h1 text-light" th:href="@{/professor}">Cardeneta</a>
+	  <form class="form-inline">
+	    <a class="btn btn-outline-light my-2 my-sm-0" th:href="@{/login}">Logout, <span th:text="${session.professor.nome}"></span></a>
+	  </form>
+	</nav>
 	<div class="container mt-5">
 	<h1>Turmas cadastradas</h1>
 	<br>
@@ -27,7 +33,7 @@
 				<td th:text="${turma.professor.nome}"></td>		
 				<td>
 				<form action="#" th:action="@{/turmas/visualizarTurma/}+${turma.codigo}" th:object="${turma}" method="post">
-					<button class="btn btn-info" type="submit">Visualizar</button>
+					<button class="btn btn-outline-info" type="submit">Visualizar</button>
 				</form>
 				</td>		
 			</tr>

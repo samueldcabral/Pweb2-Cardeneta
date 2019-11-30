@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th ="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<link rel="stylesheet" th:href="@{/myCustom.css}">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+</head>
+<title>Página do professor</title>
+</head>
+<body class="bg-light">
+	<nav class="navbar navbar-light bg-custom" id="bg-custom">
+	  <a class="navbar-brand mb-0 h1 text-light" th:href="@{/professor}">Cardeneta</a>
+	  <form class="form-inline">
+	    <a class="btn btn-outline-light my-2 my-sm-0" th:href="@{/login}">Logout, <span th:text="${session.professor.nome}"></span></a>
+	  </form>
+	</nav>
+	
+	<h1 class="mx-auto text-center mt-5">Menu de ações</h1>
+	
+	<div class="container mt-5 text-center">
+	
+		<div class="d-flex justify-content-around">
+		
+			<a th:href="@{/turmas}" class="mt-5 disabled" style="text-decoration:none; width: 25rem;">
+			<span class="card col-sm" >
+			  <span class="card-body">
+			    <strong>Visualizar turmas</strong>
+			    <img class="card-img-top m-3"  width="320px" height="170px" th:src="@{img/book.svg}" alt="Imagem de capa do card">
+			  </span>
+			</span>
+			 </a>
+			 
+			 <a th:href="@{/turmas}" class="mt-5 disabled" style="text-decoration:none; width: 25rem;">
+			<span class="card col-sm" >
+			  <span class="card-body">
+			    <strong>Registrar presença</strong>
+			    <img class="card-img-top m-3"  width="320px" height="170px" th:src="@{img/archive.svg}" alt="Imagem de capa do card">
+			  </span>
+			</span>
+			 </a>
+			
+		</div>
+	</div>
+</body>
+</html>

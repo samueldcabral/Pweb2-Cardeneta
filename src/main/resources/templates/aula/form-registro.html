@@ -3,20 +3,25 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-</head>
+<link rel="stylesheet" th:href="@{/myCustom.css}">
 <title>Registrar Aula</title>
 </head>
-<body class="bg-light">
+<body>
 
+	<nav class="navbar navbar-light bg-custom" id="bg-custom">
+	  <a class="navbar-brand mb-0 h1 text-light" th:href="@{/professor}">Cardeneta</a>
+	  <form class="form-inline">
+	    <a class="btn btn-outline-light my-2 my-sm-0" th:href="@{/login}">Logout, <span th:text="${session.professor.nome}"></span></a>
+	  </form>
+	</nav>
 	<div class="container mt-5">
 	<div class="row">
-		<div class="col-2">
+		<div class="col-1">
 		</div>
-		<div class="col-8">
-			<form th:action="@{/aula/registrar}" method="POST" class="card p-5 m-auto">
-				<h3>Registrar aula</h3>
-				<hr>
-				<br>
+		<div class="col-10">
+			<h1>Registrar aula</h1>
+			<hr>
+			<form th:action="@{/aula/registrar}" method="POST" class="p-5 m-auto">
 				<div class="form-group">
 					<label for="assunto">Assunto</label>
 					<input type="text" name="assunto" class="form-control" th:value="*{assunto}" placeholder="Assunto da aula" required autofocus />
@@ -32,7 +37,7 @@
 				  <button type="submit" class="btn btn-info">Registrar</button>
 			</form>
 		</div>
-		<div class="col-2">
+		<div class="col-1">
 		</div>
 	</div>
 	

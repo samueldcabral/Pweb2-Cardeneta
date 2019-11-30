@@ -3,17 +3,24 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-</head>
+<link rel="stylesheet" th:href="@{/myCustom.css}">
 <title>Registrar presença</title>
 </head>
 <body class="bg-light">
 
+	<nav class="navbar navbar-light bg-custom" id="bg-custom">
+	  <a class="navbar-brand mb-0 h1 text-light" th:href="@{/professor}">Cardeneta</a>
+	  <form class="form-inline">
+	    <a class="btn btn-outline-light my-2 my-sm-0" th:href="@{/login}">Logout, <span th:text="${session.professor.nome}"></span></a>
+	  </form>
+	</nav>
 	<div class="container mt-5">
 	<div class="row">
-		<div class="col-2">
+		<div class="col-1">
 		</div>
-		<div class="col-8">
+		<div class="col-10">
 			<h2 class="text-center m-3">Aula: <span th:text="${aula.assunto}"></span></h2>
+			<hr><br>
 			<h3>Adicionar presença</h3>
 			<form th:action="@{/aula/registrar-presenca}" method="POST" th:object="${aula}" >
 			<table class="table table-hover table-stripped">
@@ -28,10 +35,8 @@
 				<tr th:each="aluno : ${turma.alunos}">
 					<td scope="row" th:text="${aluno.matricula}"></td>
 					<td th:text="${aluno.nome}"></td>	
-					<td>
-<!-- 						<input type="text" name="alunoId" id="alunoId" th:value="${aluno.id}" hidden="true" /> -->
+					<td class="text-center">
 					<input type="checkbox" th:field="${aula.alunosPresentes}" th:value="${aluno.id}" />
-<!-- 						<button class="btn btn-info m-auto" type="submit" id="presenca" name="presenca">Presente</button> -->
 					</td>
 				</tr>
 				</tbody>
@@ -39,7 +44,7 @@
 			<button type="submit" class="btn btn-info">Registrar</button>
 			</form>
 		</div>
-		<div class="col-2">
+		<div class="col-1">
 		</div>
 	</div>
 	

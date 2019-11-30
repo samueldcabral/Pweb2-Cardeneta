@@ -67,7 +67,7 @@ public class LoginController {
 				Aluno alu = alunoRepository.findByUsuarioId(Long.parseLong(usuarioBanco.getId().toString()));
 				if (prof != null && alu == null) {
 					session.setAttribute("professor", prof);
-					proxPagina = "redirect:turmas";
+					proxPagina = "redirect:professor";
 				} else if (alu != null && prof == null) {
 					session.setAttribute("aluno", alu);
 					proxPagina = "redirect:disciplinas";
