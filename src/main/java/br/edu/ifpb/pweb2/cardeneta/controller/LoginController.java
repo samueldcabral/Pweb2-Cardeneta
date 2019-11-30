@@ -51,31 +51,38 @@ public class LoginController {
 			Cookie cookie = new Cookie("clogin", user.getLogin());
 			response.addCookie(cookie);
 		} else {
-			for (Cookie cookie : request.getCookies()) {
-				if (cookie.getName().equals("clogin")) {
-					cookie.setValue(null);
-					cookie.setMaxAge(0);
-					response.addCookie(cookie);
+			if (request.getCookies() != null) {	
+				for (Cookie cookie : request.getCookies()) {
+					if (cookie.getName().equals("clogin")) {
+						cookie.setValue(null);
+						cookie.setMaxAge(0);
+						response.addCookie(cookie);
+					}
 				}
 			}
 		}
-		if (user.getLogin().equals(usuarioBanco.getLogin()) && user.getSenha().equals(usuarioBanco.getSenha())) {
-			
-			Professor prof = professorRepository.findByUsuarioId(Long.parseLong(usuarioBanco.getId().toString()));
-			Aluno alu = alunoRepository.findByUsuarioId(Long.parseLong(usuarioBanco.getId().toString()));
-			
-			if (prof != null && alu == null) {
-				session.setAttribute("professor", prof);
-				System.out.println("login professor is " + prof.getNome() + " " + prof.getId());
-				if(prof.IsCoordenador()) {
-					proxPagina = "redirect:coordenador";
-				}else {
-					proxPagina = "redirect:turmas";
+		if (usuarioBanco != null) {		
+			if (user.getLogin().equals(usuarioBanco.getLogin()) && user.getSenha().equals(usuarioBanco.getSenha())) {
+				
+				Professor prof = professorRepository.findByUsuarioId(Long.parseLong(usuarioBanco.getId().toString()));
+				Aluno alu = alunoRepository.findByUsuarioId(Long.parseLong(usuarioBanco.getId().toString()));
+				if (prof != null && alu == null) {
+					session.setAttribute("professor", prof);
+					System.out.println("login professor is " + prof.getNome() + " " + prof.getId());
+					if(prof.IsCoordenador()) {
+						proxPagina = "redirect:coordenador";
+					}else {
+						proxPagina = "redirect:turmas";
+					}
+				} else if (alu != null && prof == null) {
+					session.setAttribute("aluno", alu);
+					proxPagina = "redirect:disciplinas";
+				} else {
+					proxPagina = "redirect:login";
 				}
-			} else if (alu != null && prof == null) {
-				session.setAttribute("aluno", alu);
-				proxPagina = "redirect:disciplinas";
 			} else {
+				flash.addFlashAttribute("mensagem", "Senha inválida.");
+				flash.addFlashAttribute("usuario", user);
 				proxPagina = "redirect:login";
 			}
 		} else {
