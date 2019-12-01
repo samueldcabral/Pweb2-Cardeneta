@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns:th ="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" th:href="@{/myCustom.css}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"/>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<title>Disciplinas</title>
+</head>
+<body>
+	<nav class="navbar navbar-light bg-custom" id="bg-custom">
+	  <a class="navbar-brand mb-0 h1 text-light" th:href="@{/coordenador}">Cardeneta</a>
+	  <form class="form-inline" th:action="@{/logout}" method="POST">
+	    <button type="submit" class="btn btn-outline-light my-2 my-sm-0" th:href="@{/logout}" 
+	    		th:text="${session.professor != null ? 'logout, ' + session.professor.nome : session.aluno != null ? 'logout, ' + session.aluno.nome : 'sem sessao'}">
+	    </button>
+	  </form>
+	</nav>
+	
+	<h1 class="mx-auto text-center mt-5">Disciplinas</h1>
+	
+	<div class="container">
+	
+		<div th:if="${session.professor != null}">
+			<a th:href="@{/disciplinas/cadastrar}" class="card-link btn btn-primary mt-2">Cadastrar disciplina</a>
+		</div>
+		
+		
+		<table class="table table-hover table-stripped mt-3">
+			<thead class="thead-light">
+				<tr>
+					<th scope="col">Curso</th>
+					<th scope="col">Nome</th>
+					<th scope="col" class="text-center">Carga Horária</th>
+					
+					<div th:if="${session.aluno != null}">
+						<th scope="col" class="text-center">Frequência</th>
+						<th scope="col" class="text-center">Notas</th>
+					</div>					
+					
+					<div th:if="${session.professor != null}">
+						<th scope="col" class="text-center">Editar</th>
+						<th scope="col" class="text-center">Apagar</th>
+					</div>
+				</tr>
+			</thead>
+			<tbody>
+			<tr th:each="disciplina : ${disciplinas}">
+				<td scope="row" th:text="${disciplina.curso}"></td>
+				<td scope="row" th:text="${disciplina.nome}"></td>
+				<td scope="row" th:text="${disciplina.cargaHoraria}" class="text-center"></td>
+				
+				<div th:if="${session.aluno != null}">
+				
+					<div th:if="${frequencias != null}">
+						<td scope="row" th:text="${frequencias.get(disciplina) + '%'}" class="text-center">
+					</div>
+					
+					<div th:if="${frequencias == null}">
+						<td scope="row" th:text="${frequencia.get(disciplina) + '0%'}" class="text-center">
+					</div>
+						
+					</td>
+					
+					<td scope="row" class="text-center">Notas</td>
+				</div>  <!-- th:if -->
+				
+				
+				
+				<div th:if="${session.professor != null}">
+				 	<td class="text-center" th:href="@{/editar/disciplina.nome}">
+	                    <a type="button" class="btn btn-warning" th:href="@{/disciplinas/editar/{id}(id=${disciplina.codigo})}">
+	                    	<i class="far fa-edit"></i>
+	                    </a>
+	                </td>
+	                
+					<td class="text-center">
+						<button type="button" class="btn btn-danger" data-toggle="modal" th:attr="data-target='#disc-'+${disciplina.codigo}" >
+	                  		<i class="far fa-trash-alt"></i>
+	                  	</button>
+					
+						<!-- Modal -->
+						<div class="modal fade" th:id="'disc-'+${disciplina.codigo}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						  <div class="modal-dialog" role="document">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <h5 class="modal-title" id="exampleModalLabel" th:text="${disciplina.nome}"></h5>
+						        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						          <span aria-hidden="true">&times;</span>
+						        </button>
+						      </div>
+						      <div class="modal-body">
+						        Deseja mesmo deletar?
+						      </div>
+						      <div class="modal-footer">
+						        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+						        <a type="button" class="btn btn-primary" th:href="@{/disciplinas/deletar/{id}(id=${disciplina.codigo})}">Deletar</a>
+						      </div>
+						    </div>
+						  </div>
+						</div>
+						<!-- Modal -->
+					</td>
+				</div> <!--  th:if -->
+			</tr>
+			</tbody>
+		</table>
+		
+		
+	</div>
+	
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+</html>

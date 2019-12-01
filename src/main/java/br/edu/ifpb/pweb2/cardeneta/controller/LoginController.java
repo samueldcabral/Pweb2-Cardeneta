@@ -1,5 +1,7 @@
 package br.edu.ifpb.pweb2.cardeneta.controller;
 
+import java.util.Optional;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -59,17 +61,24 @@ public class LoginController {
 				}
 			}
 		}
-		if (usuarioBanco != null) {
-			
+		if (usuarioBanco != null) {		
 			if (user.getLogin().equals(usuarioBanco.getLogin()) && user.getSenha().equals(usuarioBanco.getSenha())) {
 				
 				Professor prof = professorRepository.findByUsuarioId(Long.parseLong(usuarioBanco.getId().toString()));
 				Aluno alu = alunoRepository.findByUsuarioId(Long.parseLong(usuarioBanco.getId().toString()));
 				if (prof != null && alu == null) {
 					session.setAttribute("professor", prof);
-					proxPagina = "redirect:turmas";
+					
+					if(prof.getIsCoordenador()) {
+						proxPagina = "redirect:coordenador";
+					}else {
+						proxPagina = "redirect:turmas";
+					}
 				} else if (alu != null && prof == null) {
+					System.out.println("!!!!!!!!!!!!! fewfew");
 					session.setAttribute("aluno", alu);
+					System.out.println("meu aluno " + session.getAttribute("aluno"));
+					
 					proxPagina = "redirect:disciplinas";
 				} else {
 					proxPagina = "redirect:login";

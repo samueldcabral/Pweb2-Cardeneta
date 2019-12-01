@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th ="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" th:href="@{/myCustom.css}">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<title>Cadastrar Disciplina</title>
+</head>
+<body>
+	<nav class="navbar navbar-light bg-custom" id="bg-custom">
+	  <a class="navbar-brand mb-0 h1 text-light" th:href="@{/coordenador}">Cardeneta</a>
+	  <form class="form-inline" th:action="@{/logout}" method="POST">
+	    <button type="submit" class="btn btn-outline-light my-2 my-sm-0" th:href="@{/logout}" 
+	    		th:text="${session.professor != null ? 'logout, ' + session.professor.nome : session.aluno != null ? 'logout, ' + session.aluno.nome : 'sem sessao'}">
+	    </button>
+	  </form>
+	</nav>
+		
+	<h1 class="mx-auto text-center mt-5">Cadastrar disciplina</h1>
+
+	<div class="container mt-5">
+	
+			<form th:action="@{/disciplinas}" method="POST" class="w-50 mx-auto">
+				<input type="hidden" name="isUpdatingForm" th:value="*{isUpdating}">
+				<input type="hidden" name="codigo" th:value="*{disciplina.codigo}">
+				
+				<div class="form-group">
+			    	<label for="nome">Disciplina</label>
+			    	<input type="text" class="form-control" id="nome" name="nome" placeholder="Digite o nome da Disciplina" th:value="*{disciplina.nome}">
+			  	</div>
+			  
+			  	<div class="form-group">
+			   	 	<label for="curso">Curso</label>
+			    	<input type="text" class="form-control" id="curso" name="curso" aria-describedby="curso" placeholder="Digite o nome do Curso" th:value="*{disciplina.curso}">
+			  	</div>
+			  
+			 	<div class="form-group">
+			   	 	<label for="carga">Carga Horária</label>
+			    	<input type="text" class="form-control" id="carga" name="cargaHoraria" aria-describedby="cargaHoraria" placeholder="Digite a Carga Horária" th:value="*{disciplina.cargaHoraria}">
+			  	</div>
+			  
+		   <div th:if="${not isUpdating}">
+			  <div>Escolha professor</div>
+			  <select id="professor" name="professor" class="mt-1">
+				 <option th:each="professor : ${professores}" th:text="${professor.nome}"
+				 th:value="${professor.id}"></option>
+				</select><br/>
+				<br>
+			</div>
+			
+			  <button type="submit" class="btn btn-primary">Cadastrar</button>
+			</form>
+
+	</div>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th ="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<link rel="stylesheet" th:href="@{/myCustom.css}">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+</head>
+<title>Turma</title>
+</head>
+<body class="bg-light">
+<nav class="navbar navbar-light bg-custom" id="bg-custom">
+  <a class="navbar-brand mb-0 h1 text-light" th:href="@{/coordenador}">Cardeneta</a>
+  <form class="form-inline">
+    <a class="btn btn-outline-light my-2 my-sm-0" th:href="@{/logout}">Logout, coordenador</a>
+  </form>
+</nav>
+
+<div class="container">
+<h1 class="mx-auto text-center mt-5" th:text="${'Turma #' + turma.codigo + ' - Disciplina ' + turma.disciplina.nome}"></h1>
+
+<form th:action="@{/turmas/matricular/{codigo}(codigo=${turma.codigo})}" method="POST" >
+
+
+<button type="submit" class="card-link btn btn-primary mt-2">Salvar</button>
+
+<table class="table table-hover table-stripped mt-4">
+			<thead class="thead-light">
+				<tr>
+					<th scope="col" class="text-center">Matricula</th>
+					<th scope="col" class="text-center">Nome</th>
+					<th scope="col" class="text-center">Escolher</th>
+				</tr>
+			</thead>
+			<tbody>
+			<tr th:each="aluno : ${alunos}">
+				<td scope="row" th:text="${aluno.matricula}" class="text-center"></td>
+				
+				
+					<td scope="row" th:text="${aluno.nome}" class="text-center"></td>
+				
+				
+					<td scope="row" class="text-center">
+						<label for="escolherAluno">Escolha</label>
+						<input type="checkbox" name="idAlunos" th:value="${aluno.id}" />
+					</td>
+			
+			</tr>
+			</tbody>
+		</table>
+	</form>
+</div>
+</body>
+</html>
