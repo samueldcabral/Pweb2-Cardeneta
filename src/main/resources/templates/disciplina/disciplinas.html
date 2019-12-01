@@ -57,7 +57,7 @@
 					</div>
 					
 					<div th:if="${frequencias == null}">
-						<td scope="row" th:text="${'0%'}" class="text-center">
+						<td scope="row" th:text="${frequencia.get(disciplina) + '0%'}" class="text-center">
 					</div>
 						
 					</td>

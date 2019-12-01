@@ -29,7 +29,7 @@ public class Turma {
 	@ManyToOne
 	private Professor professor;
 	
-	@OneToMany
+	@OneToMany(fetch = FetchType.EAGER)
 	private List<Aula> aulas = new ArrayList<>();
 	
 	@OneToMany

@@ -49,22 +49,36 @@ public class DisciplinaController {
 		aluno = (Aluno) session.getAttribute("aluno");
 
 		List<Disciplina> disciplinas = new ArrayList<Disciplina>();
+		HashMap<Disciplina, Double> frequencia = new HashMap<Disciplina, Double>();
+		List<Aula> aulasAluno = aluno.getPresencas();
 		
 		if(aluno != null) {
 			for(Turma turma : aluno.getTurmas()) {
 				if(turma.getDisciplina() != null) {
 					disciplinas.add(turma.getDisciplina());
 					
-//					for(Aula aula : turma.getAulas()) {
-////						for(Aula aulaAluno : aulasDoAluno) {
-////							if(aula.getId() == aulaAluno.getId()) {
-////								participacao++;
-////							}
-////						}
-//					}
-//					
-////					double porcentagemFrequencia = (participacao * 100) / totalDeAulasTurma;
-////					frequencias.put(turma.getDisciplina(), porcentagemFrequencia);
+					double participacao = 0;
+					
+					for(Aula aula : turma.getAulas()) {
+						for(Aula aulaAluno : aulasAluno) {
+							if(aula.getId() == aulaAluno.getId()) {
+								participacao++;
+							}
+						}
+					}
+					
+					int totalAulas = turma.getAulas().size();
+					double porcentagemFrequencia = 0;
+					
+					if(totalAulas > 0) {
+						porcentagemFrequencia = (participacao * 100) / totalAulas;
+					}
+					
+					frequencia.put(turma.getDisciplina(), porcentagemFrequencia);
+					
+					System.out.println("turma.getAulas().size()    " + turma.getAulas().size());
+					System.out.println("participacao     " +  participacao);
+					System.out.println("porcentagemFrequencia    "  + porcentagemFrequencia);
 				}
 			}
 			
@@ -73,7 +87,7 @@ public class DisciplinaController {
 		}
 	
 		model.addObject("disciplinas", disciplinas);
-//		model.addObject("frequencias", frequencias);
+		model.addObject("frequencia", frequencia);
 		return model;
 	}
 	
