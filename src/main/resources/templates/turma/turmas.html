@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th ="http://www.thymeleaf.org">
 <head>
+<<<<<<< HEAD
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link rel="stylesheet" th:href="@{css/myCustom.css}">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -43,6 +44,41 @@
 		</tbody>
 	</table>
 </div>
+=======
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<title>Listagem de turmas</title>
+<link rel="stylesheet" th:href="@{style.css}" />
+</head>
+<body>
+
+	<div class="container mt-5">
+	<h1>Turmas cadastradas</h1>
+	<br>
+		<table class="table table-hover table-stripped">
+			<thead class="thead-dark">
+				<tr>
+					<th scope="col">Codigo</th>
+					<th scope="col">Disciplina</th>
+					<th scope="col">Professor</th>
+					<th scope="col">Visualizar</th>
+				</tr>
+			</thead>
+			<tbody>
+			<tr th:each="turma : ${turmas}">
+				<td scope="row" th:text="${turma.codigo}"></td>
+				<td th:text="${turma.disciplina.nome}"></td>
+				<td th:text="${turma.professor.nome}"></td>		
+				<td>
+				<form action="#" th:action="@{/turmas/visualizarTurma/}+${turma.codigo}" th:object="${turma}" method="post">
+					<button class="btn btn-info" type="submit">Visualizar</button>
+				</form>
+				</td>		
+			</tr>
+			</tbody>
+		</table>
+	</div>
+>>>>>>> 927027e4fbce2395dbfe866c1bcfa8548bc747c2
 
 </body>
 </html>

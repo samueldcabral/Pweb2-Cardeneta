@@ -7,7 +7,11 @@
 </head>
 <body>
 
+<<<<<<< HEAD
 	<div class="container mt-5">
+=======
+	<div class="container mt-5" th:if="${session.professor.id == turma.professor.id}">
+>>>>>>> 927027e4fbce2395dbfe866c1bcfa8548bc747c2
 	<h1>Alunos da turma</h1>
 	<br>
 	<h3 th:text="${turma.disciplina.nome}"></h3>
@@ -30,6 +34,10 @@
 		</tbody>
 	</table>
 	</div>
+<<<<<<< HEAD
+=======
+	<div th:if="${session.professor.id != turma.professor.id}">Página Inválida</div>
+>>>>>>> 927027e4fbce2395dbfe866c1bcfa8548bc747c2
 
 </body>
 </html>

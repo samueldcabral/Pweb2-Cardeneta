@@ -1,6 +1,9 @@
 package br.edu.ifpb.pweb2.cardeneta.entity;
 
+<<<<<<< HEAD
 import java.util.ArrayList;
+=======
+>>>>>>> 927027e4fbce2395dbfe866c1bcfa8548bc747c2
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -21,10 +24,16 @@ public class Disciplina {
 	
 	private String nome;
 	private String curso;
+<<<<<<< HEAD
 	private Long cargaHoraria;
 	
 	@OneToMany
 	private List<Turma> turmas = new ArrayList<Turma>();
+=======
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<Turma> turmas;
+>>>>>>> 927027e4fbce2395dbfe866c1bcfa8548bc747c2
 	
 	public Long getCodigo() {
 		return codigo;
@@ -44,6 +53,7 @@ public class Disciplina {
 	public void setCurso(String curso) {
 		this.curso = curso;
 	}
+<<<<<<< HEAD
 	public Long getCargaHoraria() {
 		return cargaHoraria;
 	}
@@ -74,4 +84,9 @@ public class Disciplina {
 	}
 	
 
+=======
+	
+	
+	
+>>>>>>> 927027e4fbce2395dbfe866c1bcfa8548bc747c2
 }

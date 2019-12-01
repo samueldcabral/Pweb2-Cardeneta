@@ -13,8 +13,14 @@
 		<div class="col-2">
 		</div>
 		<div class="col-8">
+<<<<<<< HEAD
 			<h2 th:text="${aula.assunto}"></h2>
 			<form th:action="@{/aula/registrar-presenca/}+${aula.id}" method="POST"  >
+=======
+			<h2 class="text-center m-3">Aula: <span th:text="${aula.assunto}"></span></h2>
+			<h3>Adicionar presença</h3>
+			<form th:action="@{/aula/registrar-presenca}" method="POST" th:object="${aula}" >
+>>>>>>> 927027e4fbce2395dbfe866c1bcfa8548bc747c2
 			<table class="table table-hover table-stripped">
 				<thead class="thead-dark">
 					<tr>
@@ -25,6 +31,7 @@
 				</thead>
 				<tbody>
 				<tr th:each="aluno : ${turma.alunos}">
+<<<<<<< HEAD
 						<td scope="row" th:text="${aluno.matricula}"></td>
 						<td th:text="${aluno.nome}"></td>	
 						<td>
@@ -36,6 +43,20 @@
 			</table>
 			</form>
 			<button type="submit" class="btn btn-info">Registrar</button>
+=======
+					<td scope="row" th:text="${aluno.matricula}"></td>
+					<td th:text="${aluno.nome}"></td>	
+					<td>
+<!-- 						<input type="text" name="alunoId" id="alunoId" th:value="${aluno.id}" hidden="true" /> -->
+					<input type="checkbox" th:field="${aula.alunosPresentes}" th:value="${aluno.id}" />
+<!-- 						<button class="btn btn-info m-auto" type="submit" id="presenca" name="presenca">Presente</button> -->
+					</td>
+				</tr>
+				</tbody>
+			</table>
+			<button type="submit" class="btn btn-info">Registrar</button>
+			</form>
+>>>>>>> 927027e4fbce2395dbfe866c1bcfa8548bc747c2
 		</div>
 		<div class="col-2">
 		</div>
