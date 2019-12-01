@@ -27,13 +27,4 @@ public class AlunoController {
 		return "aulaRegistro";
 	}
 	
-	@RequestMapping("/matricular")
-	public ModelAndView matricularAlunos() {
-		ModelAndView model = new ModelAndView("aluno/matricula");
-		List<Turma> turmas = turmaRepository.findAll();
-		List<Aluno> alunos = alunoRepository.findAll();
-		model.addObject("turmas", turmas);
-		model.addObject("alunos", alunos);
-		return model;
-	}
 }

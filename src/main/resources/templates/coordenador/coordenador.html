@@ -12,8 +12,8 @@
 <body class="bg-light">
 <nav class="navbar navbar-light bg-custom" id="bg-custom">
   <a class="navbar-brand mb-0 h1 text-light" th:href="@{/coordenador}">Cardeneta</a>
-  <form class="form-inline">
-    <a class="btn btn-outline-light my-2 my-sm-0" th:href="@{/logout}">Logout, coordenador</a>
+  <form class="form-inline" >
+    <button type="submit" class="btn btn-outline-light my-2 my-sm-0" th:href="@{/logout}" th:text="${'logout, ' + session.professor.nome}"></button>
   </form>
 </nav>
 
@@ -34,7 +34,7 @@
 		  <div class="card-body">
 		    <h5 class="card-title">Matricular aluno em turma</h5>
 		    <h6 class="card-subtitle mb-2 text-muted">Você pode matricular alunos em turmas.</h6> 
-		    <a th:href="@{/alunos/matricular}" class="card-link btn btn-outline-primary mt-5">Matricular</a>
+		    <a th:href="@{/turmas/matricular}" class="card-link btn btn-outline-primary mt-5">Matricular</a>
 		  </div>
 		</div>
 		
