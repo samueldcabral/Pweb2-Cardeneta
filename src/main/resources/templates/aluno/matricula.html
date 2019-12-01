@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th ="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<link rel="stylesheet" th:href="@{/myCustom.css}">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+</head>
+<title>Matricular</title>
+</head>
+<body class="bg-light">
+<nav class="navbar navbar-light bg-custom" id="bg-custom">
+  <a class="navbar-brand mb-0 h1 text-light" th:href="@{/coordenador}">Cardeneta</a>
+  <form class="form-inline">
+    <a class="btn btn-outline-light my-2 my-sm-0" th:href="@{/logout}">Logout, coordenador</a>
+  </form>
+</nav>
+
+<div class="container">
+<h1 class="mx-auto text-center mt-5">Matricular alunos</h1>
+
+<a th:href="@{/disciplinas/afe}" class="card-link btn btn-primary mt-2">Salvar</a>
+
+<table class="table table-hover table-stripped mt-3">
+			<thead class="thead-light">
+				<tr>
+					<th scope="col" class="text-center">Curso</th>
+					<th scope="col" class="text-center">Nome</th>
+					<th scope="col" class="text-center">Turmas</th>
+				</tr>
+			</thead>
+			<tbody>
+			<tr th:each="aluno : ${alunos}">
+				<td scope="row" th:text="${aluno.nome}" class="text-center"></td>
+				<td th:text="${aluno.matricula}" class="text-center"></td>
+				<td class="text-center">
+					<div th:each="turma : ${turmas}">
+						<input type="checkbox" name="turmas" th:value="${turma.codigo}" />
+					</div>
+				</td>
+			</tr>
+			</tbody>
+		</table>
+</div>
+</body>
+</html>
