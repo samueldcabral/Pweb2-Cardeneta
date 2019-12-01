@@ -3,6 +3,7 @@ package br.edu.ifpb.pweb2.cardeneta.controller;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.Cookie;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -102,19 +104,18 @@ public class AulaController {
 		return "aula/registrar-presenca";
 	}
 	
-	@RequestMapping("/registrar-presenca/{id}")
-	public void registrarPresenca(@PathVariable Long id, Long alunoId, Model model) {
-		Optional<Aula> aulaOp = aulaRepository.findById(id);
-		Aula aula = aulaOp.get();
+	@RequestMapping("/registrar-presenca")
+	public String registrarPresenca(@ModelAttribute("aula") Aula aula) {
 		
-		Optional<Aluno> alunoOp = alunoRepository.findById(alunoId);
-		Aluno aluno = alunoOp.get();
-		
-		aula.addAlunosPresentes(aluno);
-		aluno.addPresenca(aula);
+		List<Aluno> alunos =  aula.getAlunosPresentes();
 		aulaRepository.save(aula);
-		alunoRepository.save(aluno);
-		alunoRepository.flush();
 		aulaRepository.flush();
+
+		for (Aluno aluno : alunos) {
+			aluno.addPresenca(aula);
+			alunoRepository.save(aluno);
+			alunoRepository.flush();
+		}
+		return "teste/index";
 	}
 }
