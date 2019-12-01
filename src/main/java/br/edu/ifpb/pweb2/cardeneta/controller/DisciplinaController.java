@@ -1,5 +1,7 @@
 package br.edu.ifpb.pweb2.cardeneta.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,9 +16,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import br.edu.ifpb.pweb2.cardeneta.entity.Aluno;
+import br.edu.ifpb.pweb2.cardeneta.entity.Aula;
 import br.edu.ifpb.pweb2.cardeneta.entity.Disciplina;
 import br.edu.ifpb.pweb2.cardeneta.entity.Professor;
 import br.edu.ifpb.pweb2.cardeneta.entity.Turma;
+import br.edu.ifpb.pweb2.cardeneta.repository.AlunoRepository;
 import br.edu.ifpb.pweb2.cardeneta.repository.DisciplinaRepository;
 import br.edu.ifpb.pweb2.cardeneta.repository.ProfessorRepository;
 import br.edu.ifpb.pweb2.cardeneta.repository.TurmaRepository;
@@ -32,13 +37,43 @@ public class DisciplinaController {
 	private TurmaRepository turmaRepository;
 	
 	@Autowired
+	private AlunoRepository alunoRepository;
+	
+	@Autowired
 	private ProfessorRepository professorRepository;
 	
 	@RequestMapping(method = RequestMethod.GET)
-	private ModelAndView listarDisciplinas() {
+	private ModelAndView listarDisciplinas(HttpSession session) {
 		ModelAndView model = new ModelAndView("disciplina/disciplinas");
-		List<Disciplina> disciplinas = disciplinaRepository.findAll();
+		Aluno aluno = null;
+		aluno = (Aluno) session.getAttribute("aluno");
+
+		List<Disciplina> disciplinas = new ArrayList<Disciplina>();
+		
+		if(aluno != null) {
+			for(Turma turma : aluno.getTurmas()) {
+				if(turma.getDisciplina() != null) {
+					disciplinas.add(turma.getDisciplina());
+					
+//					for(Aula aula : turma.getAulas()) {
+////						for(Aula aulaAluno : aulasDoAluno) {
+////							if(aula.getId() == aulaAluno.getId()) {
+////								participacao++;
+////							}
+////						}
+//					}
+//					
+////					double porcentagemFrequencia = (participacao * 100) / totalDeAulasTurma;
+////					frequencias.put(turma.getDisciplina(), porcentagemFrequencia);
+				}
+			}
+			
+		}else {
+			disciplinas = disciplinaRepository.findAll();
+		}
+	
 		model.addObject("disciplinas", disciplinas);
+//		model.addObject("frequencias", frequencias);
 		return model;
 	}
 	

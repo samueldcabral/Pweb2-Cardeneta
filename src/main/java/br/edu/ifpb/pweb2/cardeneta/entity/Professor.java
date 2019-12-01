@@ -29,7 +29,7 @@ public class Professor implements Serializable {
 //	private String login;
 //	private String senha;
 	
-    public Boolean IsCoordenador() {
+    public Boolean getIsCoordenador() {
 		return isCoordenador;
 	}
 

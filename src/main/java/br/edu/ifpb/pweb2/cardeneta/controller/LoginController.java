@@ -69,13 +69,16 @@ public class LoginController {
 				if (prof != null && alu == null) {
 					session.setAttribute("professor", prof);
 					
-					if(prof.IsCoordenador()) {
+					if(prof.getIsCoordenador()) {
 						proxPagina = "redirect:coordenador";
 					}else {
 						proxPagina = "redirect:turmas";
 					}
 				} else if (alu != null && prof == null) {
+					System.out.println("!!!!!!!!!!!!! fewfew");
 					session.setAttribute("aluno", alu);
+					System.out.println("meu aluno " + session.getAttribute("aluno"));
+					
 					proxPagina = "redirect:disciplinas";
 				} else {
 					proxPagina = "redirect:login";

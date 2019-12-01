@@ -10,12 +10,14 @@
 <title>Coordenador</title>
 </head>
 <body class="bg-light">
-<nav class="navbar navbar-light bg-custom" id="bg-custom">
-  <a class="navbar-brand mb-0 h1 text-light" th:href="@{/coordenador}">Cardeneta</a>
-  <form class="form-inline" >
-    <button type="submit" class="btn btn-outline-light my-2 my-sm-0" th:href="@{/logout}" th:text="${'logout, ' + session.professor.nome}"></button>
-  </form>
-</nav>
+	<nav class="navbar navbar-light bg-custom" id="bg-custom">
+	  <a class="navbar-brand mb-0 h1 text-light" th:href="@{/coordenador}">Cardeneta</a>
+	  <form class="form-inline" th:action="@{/logout}" method="POST">
+	    <button type="submit" class="btn btn-outline-light my-2 my-sm-0" th:href="@{/logout}" 
+	    		th:text="${session.professor != null ? 'logout, ' + session.professor.nome : session.aluno != null ? 'logout, ' + session.aluno.nome : 'sem sessao'}">
+	    </button>
+	  </form>
+	</nav>
 
 <h1 class="mx-auto text-center mt-5">Menu de ações</h1>
 

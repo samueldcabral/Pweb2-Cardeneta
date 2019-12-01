@@ -1,6 +1,7 @@
 package br.edu.ifpb.pweb2.cardeneta.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -37,7 +38,7 @@ public class Aluno implements Serializable {
 	private Usuario usuario;
 	
 	@ManyToMany
-	private List<Aula> presencas;
+	private List<Aula> presencas = new ArrayList<Aula>();
 
 	public List<Turma> getTurmas() {
 		return turmas;
