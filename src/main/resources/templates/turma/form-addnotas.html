@@ -25,6 +25,10 @@
 			
 		</div>
 		<br>
+<!-- 		<a type="text" class="btn btn-primary" >1ª Nota</a> -->
+<!-- 		<a th:if="${qtdNotas > 1}" class="btn btn-primary">2ª Nota</a> -->
+<!-- 		<a th:if="${qtdNotas == 3}" class="btn btn-primary">3ª Nota</a> -->
+		
 		<form action="#" th:action="@{/nota/registrar-nota}" method="POST" th:object="${nota}">
 		<table class="table table-hover table-stripped">
 			<thead class="thead-dark">
@@ -38,13 +42,12 @@
 			<tr th:each="aluno : ${alunos}">
 				<td scope="row" th:text="${aluno.matricula}"></td>
 				<td th:text="${aluno.nome}"></td>	
-				<td th:each="nota : ${notas}">
-				
+				<td>
 <!-- 				ARRUMAR ISSO -->
-
-					<input th:field="${turma.notas}" th:value="${aluno.id}" type="hidden">
-					<input type="text" th:field="${nota.aluno}" 
-					th:value="*{aluno.id}" />
+					<span th:each="n : ${notas}">
+						<input th:field="${turma.notas}" th:value="${aluno.id}" type="hidden">
+						<input type="text" th:value="${n.nota}" />
+					</span>
 				</td>	
 			</tr>
 			</tbody>

@@ -48,14 +48,14 @@ public class NotaController {
 		Long ch = turma.getDisciplina().getCargaHoraria();
 		List<Nota> notas = new ArrayList<Nota>();
 		if (ch < 34) {
-			notas.add(null);
+			notas.add(new Nota(0));
 		} else if (ch < 51) {
-			notas.add(null);
-			notas.add(null);
+			notas.add(new Nota(0));
+			notas.add(new Nota(0));
 		} else {
-			notas.add(null);
-			notas.add(null);
-			notas.add(null);
+			notas.add(new Nota(0));
+			notas.add(new Nota(0));
+			notas.add(new Nota(0));
 		}
 		List<Aluno> alunos = turma.getAlunos();
 		model.addAttribute("turma", turma);
@@ -65,9 +65,9 @@ public class NotaController {
 	}
 	
 	@RequestMapping("/registrar-nota")
-	public String registrarNota(@ModelAttribute("nota") Nota nota) {
+	public String registrarNota(@ModelAttribute("nota") Nota nota, @ModelAttribute("aula") Aula aula) {
 		
-		System.out.println("FOIIIIII "+nota);
+		System.out.println("FOIIIIII " + nota);
 //		List<Aluno> alunos =  aula.getAlunosPresentes();
 //		aulaRepository.flush();
 //		for (Aluno aluno : alunos) {
@@ -76,6 +76,14 @@ public class NotaController {
 //			alunoRepository.flush();
 //		}
 //		return "redirect:/turmas";
-		return null;
+		
+//		aula.setTurma(t);
+//		t.addAulas(aula);
+//		aulaRepository.save(aula);
+//		turmaRepository.saveAndFlush(t);
+//		aulaRepository.flush();
+//		model.addAttribute("aula", aula);
+//		model.addAttribute("turma", t);
+		return "redirect:/turmas";
 	}
 }
