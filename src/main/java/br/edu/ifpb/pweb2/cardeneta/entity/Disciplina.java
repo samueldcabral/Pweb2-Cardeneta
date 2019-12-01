@@ -23,7 +23,6 @@ public class Disciplina {
 	private String curso;
 	private Long cargaHoraria;
 	
-//	@OneToMany(cascade = CascadeType.ALL)
 	@OneToMany
 	private List<Turma> turmas = new ArrayList<Turma>();
 	

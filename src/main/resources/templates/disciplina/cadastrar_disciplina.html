@@ -19,7 +19,7 @@
 	<div class="container mt-5">
 	
 			<form th:action="@{/disciplinas}" method="POST" class="w-50 mx-auto">
-				<input type="hidden" name="isUpdating" th:value="*{isUpdating}">
+				<input type="hidden" name="isUpdatingForm" th:value="*{isUpdating}">
 				<input type="hidden" name="codigo" th:value="*{disciplina.codigo}">
 				
 				<div class="form-group">
@@ -46,7 +46,6 @@
 				<br>
 			</div>
 			
-				
 			  <button type="submit" class="btn btn-primary">Cadastrar</button>
 			</form>
 

@@ -13,5 +13,4 @@ public class CoordenadorController {
 	public String loginForm() {
 		return "coordenador/coordenador";
 	}
-
 }

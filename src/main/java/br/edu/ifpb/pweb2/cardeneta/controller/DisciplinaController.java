@@ -43,12 +43,11 @@ public class DisciplinaController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	private ModelAndView cadastrarDisciplina(Disciplina disciplina, String turma, String professor, String isUpdating) {
-		boolean isUpdatingBool = Boolean.parseBoolean(isUpdating);
+	private ModelAndView cadastrarDisciplina(Disciplina disciplina, String turma, String professor, String isUpdatingForm) {
+		boolean isUpdating = Boolean.parseBoolean(isUpdatingForm);
 		ModelAndView model = new ModelAndView("redirect:disciplinas");
 	
-		if(isUpdatingBool) {
-			System.out.println("is here");
+		if(isUpdating) {
 			Disciplina discBd = disciplinaRepository.getOne(disciplina.getCodigo());
 			discBd.setNome(disciplina.getNome());
 			discBd.setCargaHoraria(disciplina.getCargaHoraria());
@@ -57,28 +56,18 @@ public class DisciplinaController {
 			disciplinaRepository.save(discBd);
 			
 		}else {
-			//Optional<Turma> turmaOpt = turmaRepository.findTurmaByCodigo(Long.parseLong(turma));
 			Optional<Professor> profOpt = professorRepository.findById(Long.parseLong(professor));
-			
-			//Turma turmaNew = null;
 			Professor profNew = null;
-			
-			//if (turmaOpt.isPresent()) {
-			//	turmaNew = turmaOpt.get();
-			//}
 			
 			if (profOpt.isPresent()) {
 				profNew = profOpt.get();
 			}
 			
 			Turma turmaNew = new Turma();
-			
 			turmaNew.setDisciplina(disciplina);
 			turmaNew.setProfessor(profNew);
-			
 			Disciplina disc = disciplinaRepository.save(disciplina);
 			disc.adicionarTurma(turmaNew);
-			
 			profNew.addTurmas(turmaNew);
 			
 			turmaRepository.save(turmaNew);
@@ -130,7 +119,6 @@ public class DisciplinaController {
 			}
 				
 			disciplinaRepository.deleteById(id);
-		
 		}
 		return model;
 	}
