@@ -1,39 +1,48 @@
 <!DOCTYPE html>
 <html xmlns:th ="http://www.thymeleaf.org">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-<title>Listagem de turmas</title>
-<link rel="stylesheet" th:href="@{style.css}" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" th:href="@{css/myCustom.css}">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<title>Listagem de turmas</title>
+	<link rel="stylesheet" th:href="@{style.css}" />
 </head>
 <body>
 
-	<div class="container mt-5">
+<nav class="navbar navbar-light bg-custom" id="bg-custom">
+	<a class="navbar-brand mb-0 h1 text-light" th:href="@{/coordenador}">Cardeneta</a>
+	<form class="form-inline">
+		<button class="btn btn-outline-light my-2 my-sm-0" th:href="@{/logout}" >Logout, coordenador</button>
+	</form>
+</nav>
+
+
+<div class="container mt-5">
 	<h1>Turmas cadastradas</h1>
 	<br>
-		<table class="table table-hover table-stripped">
-			<thead class="thead-dark">
-				<tr>
-					<th scope="col">Codigo</th>
-					<th scope="col">Disciplina</th>
-					<th scope="col">Professor</th>
-					<th scope="col">Visualizar</th>
-				</tr>
-			</thead>
-			<tbody>
-			<tr th:each="turma : ${turmas}">
-				<td scope="row" th:text="${turma.codigo}"></td>
-				<td th:text="${turma.disciplina.nome}"></td>
-				<td th:text="${turma.professor.nome}"></td>		
-				<td>
+	<table class="table table-hover table-stripped">
+		<thead class="thead-dark">
+		<tr>
+			<th scope="col">Codigo</th>
+			<th scope="col">Disciplina</th>
+			<th scope="col">Professor</th>
+			<th scope="col">Visualizar</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr th:each="turma : ${turmas}">
+			<td scope="row" th:text="${turma.codigo}"></td>
+			<td th:text="${turma.disciplina.nome}"></td>
+			<td th:text="${turma.professor.nome}"></td>
+			<td>
 				<form action="#" th:action="@{/turmas/visualizarTurma/}+${turma.codigo}" th:object="${turma}" method="post">
 					<button class="btn btn-info" type="submit">Visualizar</button>
 				</form>
-				</td>		
-			</tr>
-			</tbody>
-		</table>
-	</div>
+			</td>
+		</tr>
+		</tbody>
+	</table>
+</div>
 
 </body>
 </html>

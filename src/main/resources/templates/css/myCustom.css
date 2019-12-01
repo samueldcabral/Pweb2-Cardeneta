@@ -1,0 +1,9 @@
+@charset "ISO-8859-1";
+
+#bg-custom {
+    background: linear-gradient(to right, #7c71f4, #139fff);
+}
+
+#card-custom {
+    border-top: 4px solid #2aa9ff;
+}
