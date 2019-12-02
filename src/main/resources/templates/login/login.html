@@ -2,13 +2,14 @@
 <html xmlns:th ="http://www.thymeleaf.org">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" th:href="@{/myCustom.css}">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <title>Login</title>
 </head>
-<body class="bg-dark">
+<body id="bg-login-custom">
 
-	<div class="container mt-5">
-	<div class="row">
+	<div class="container mt-5" id="mt-10">
+	<div class="row" id="mt-10">
 		<div class="col-3">
 		</div>
 		<div class="col-6">
@@ -21,7 +22,6 @@
 			<form action="#" th:action="@{/login}" method="POST" class="card p-5 m-auto" th:object="${usuario}">
 				<h3>Login</h3>
 				<hr>
-				<br>
 				<div class="form-group">
 					<label for="login"></label>
 					<input type="text" name="login" class="form-control" th:value="*{login}" placeholder="Seu login" required autofocus />
@@ -34,7 +34,7 @@
 				    <input type="checkbox" class="form-check-input" th:value="sim" id="lembrar" name="lembrar">
 				    <label class="form-check-label" for="lembrar">Lembrar-me</label>
 				 </div>
-				  <button type="submit" class="btn btn-info">Entrar</button>
+				  <button type="submit" class="btn btn-primary">Entrar</button>
 			</form>
 		</div>
 		<div class="col-3">
