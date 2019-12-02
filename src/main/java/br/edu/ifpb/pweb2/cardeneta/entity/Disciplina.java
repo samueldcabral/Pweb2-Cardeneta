@@ -53,9 +53,24 @@ public class Disciplina {
 	public void adicionarTurma(Turma turma) {
 		this.turmas.add(turma);
 	}
+	
+	public Turma getTurma(Long id) {
+		for(Turma tur : turmas) {
+			if(tur.getCodigo() == id) {
+				return tur;
+			}
+		}
+		return null;
+	}
+	
+	public void updateTurma(Turma antigo, Turma novo) {
+		this.turmas.remove(antigo);
+		this.adicionarTurma(novo);
+	}
+	
 	public List<Turma> getTurmas() {
 		return turmas;
 	}
 	
-
+  
 }

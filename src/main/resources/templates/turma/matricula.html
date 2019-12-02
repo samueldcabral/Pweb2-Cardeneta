@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th ="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<link rel="stylesheet" th:href="@{/myCustom.css}">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+</head>
+<title>Matricular</title>
+</head>
+<body class="bg-light">
+<nav class="navbar navbar-light bg-custom" id="bg-custom">
+  <a class="navbar-brand mb-0 h1 text-light" th:href="@{/coordenador}">Cardeneta</a>
+  <form class="form-inline">
+    <a class="btn btn-outline-light my-2 my-sm-0" th:href="@{/logout}">Logout, coordenador</a>
+  </form>
+</nav>
+
+<div class="container">
+<h1 class="mx-auto text-center mt-5">Listagem de Turmas</h1>
+
+<!--  <a th:href="@{/disciplinas/afe}" class="card-link btn btn-primary mt-2">Salvar</a>-->
+
+<table class="table table-hover table-stripped mt-4">
+			<thead class="thead-light">
+				<tr>
+					<th scope="col" class="text-center">Código da turma</th>
+					<th scope="col" class="text-center">Disciplina</th>
+					<th scope="col" class="text-center">Professor</th>
+					<th scope="col" class="text-center">Matricular</th>
+				</tr>
+			</thead>
+			<tbody>
+			<tr th:each="turma : ${turmas}">
+				<td scope="row" th:text="${turma.codigo}" class="text-center"></td>
+				
+				
+					<td scope="row" th:text="${turma.disciplina != null ? turma.disciplina.nome : 'Sem Disciplina cadastrada'}" class="text-center"></td>
+				
+				
+					<td scope="row" th:text="${turma.professor != null ? turma.professor.nome : 'Sem Professor cadastrado'}" class="text-center"></td>
+			
+				<td scope="row" class="text-center">
+					<a class="btn btn-outline-primary" th:href="@{/turmas/matricular/{codigo}(codigo=${turma.codigo})}">Matricular</a>
+				</td>
+			</tr>
+			</tbody>
+		</table>
+</div>
+</body>
+</html>

@@ -3,6 +3,7 @@ package br.edu.ifpb.pweb2.cardeneta.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -25,10 +26,10 @@ public class Turma {
 	@ManyToOne
 	private Disciplina disciplina;	
 	
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne
 	private Professor professor;
 	
-	@OneToMany
+	@OneToMany(fetch = FetchType.EAGER)
 	private List<Aula> aulas = new ArrayList<>();
 	
 	@OneToMany
