@@ -26,3 +26,4 @@ public class AlunoController {
 	public String listar(String turma) {
 		return "aulaRegistro";
 	}
+}
