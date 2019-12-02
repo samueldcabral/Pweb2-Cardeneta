@@ -2,21 +2,31 @@
 <html xmlns:th ="http://www.thymeleaf.org">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" th:href="@{/myCustom.css}">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <title>Listagem de alunos</title>
 </head>
 <body>
-
+	<nav class="navbar navbar-light bg-custom" id="bg-custom">
+	  <a class="navbar-brand mb-0 h1 text-light">Cardeneta</a>
+	  <form class="form-inline" th:action="@{/logout}" method="POST">
+	    <button type="submit" class="btn btn-outline-light my-2 my-sm-0" th:href="@{/logout}" 
+	    		th:text="${session.professor != null ? 'logout, ' + session.professor.nome : session.aluno != null ? 'logout, ' + session.aluno.nome : 'sem sessao'}">
+	    </button>
+	  </form>
+	</nav>
+	
 	<div class="container mt-5" th:if="${session.professor.id == turma.professor.id}">
-	<h1>Alunos da turma</h1>
+	<h1 class="mx-auto text-center mt-5">Alunos da turma</h1>
 	<br>
-	<h3 th:text="${turma.disciplina.nome}"></h3>
-	<form action="#" th:action="@{/aula/adicionar/}+${turma.codigo}" method="get">
-		<button class="btn btn-info" type="submit">Adicionar Aula</button>
+	<h3 class="mx-auto text-center" th:text="${turma.disciplina.nome}"></h3>
+	
+	<form th:action="@{/aula/adicionar/}+${turma.codigo}" method="get">
+		<button class="btn btn-primary" type="submit">Adicionar Aula</button>
 	</form>
 	<br>
 	<table class="table table-hover table-stripped">
-		<thead class="thead-dark">
+		<thead class="thead-light">
 			<tr>
 				<th scope="col">Matricula</th>
 				<th scope="col">Nome</th>

@@ -44,15 +44,16 @@ public class DisciplinaController {
 	
 	@RequestMapping(method = RequestMethod.GET)
 	private ModelAndView listarDisciplinas(HttpSession session) {
+		
 		ModelAndView model = new ModelAndView("disciplina/disciplinas");
 		Aluno aluno = null;
 		aluno = (Aluno) session.getAttribute("aluno");
-
+		
 		List<Disciplina> disciplinas = new ArrayList<Disciplina>();
 		HashMap<Disciplina, Double> frequencia = new HashMap<Disciplina, Double>();
-		List<Aula> aulasAluno = aluno.getPresencas();
 		
-		if(aluno != null) {
+		if(aluno != null && aluno.getNome() != null) {
+			List<Aula> aulasAluno = aluno.getPresencas();
 			for(Turma turma : aluno.getTurmas()) {
 				if(turma.getDisciplina() != null) {
 					disciplinas.add(turma.getDisciplina());
@@ -83,9 +84,11 @@ public class DisciplinaController {
 			}
 			
 		}else {
+			System.out.println("parte 2");
 			disciplinas = disciplinaRepository.findAll();
 		}
-	
+		
+		System.out.println("parte 3");
 		model.addObject("disciplinas", disciplinas);
 		model.addObject("frequencia", frequencia);
 		return model;

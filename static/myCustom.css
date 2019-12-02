@@ -7,3 +7,13 @@
 #card-custom {
 	border-top: 4px solid #2aa9ff;
 }
+
+#bg-login-custom {
+	background: linear-gradient(33deg, #6d63d8, #42b1fd);
+	height: 100vh;
+	overflow: hidden;
+}
+
+#mt-10 {
+	margin-top: 150px;
+}
