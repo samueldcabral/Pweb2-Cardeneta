@@ -22,6 +22,12 @@ public class Nota {
 	
 	@ManyToOne
 	private Aluno aluno;
+	
+	public Nota() {	}
+
+	public Nota(int nota) {
+		this.nota = nota;
+	}
 
 	public Long getId() {
 		return id;

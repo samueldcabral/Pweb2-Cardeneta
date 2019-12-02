@@ -37,6 +37,25 @@ public class AulaController {
 	
 	@Autowired
 	private AlunoRepository alunoRepository;
+	
+	@RequestMapping("/adicionar")
+	public String paginaRegistro(Model model, HttpServletRequest request, HttpSession session) {
+//		ModelAndView model = new ModelAndView("aula/registrar");
+		String login = "";
+		for (Cookie cookie : request.getCookies()) {
+			if (cookie.getName().equals("clogin")) {
+				login = cookie.getValue();
+			}
+		}
+		Professor professor = (Professor) session.getAttribute("professor");
+
+        if (professor == null) {
+        	return "redirect:disciplinas";        	
+        } 
+        List<Turma> turmas = turmaRepository.findByProfessorId(professor.getId());
+		model.addAttribute("turmas", turmas);
+		return "aula/form-registro2";
+	}
 
 	@RequestMapping("/adicionar/{codigo}")
 	public String paginaRegistro(@PathVariable String codigo, Model model, HttpServletRequest request, HttpSession session) {
@@ -60,6 +79,7 @@ public class AulaController {
 		model.addAttribute("turma", turma);
 		return "aula/form-registro";
 	}
+		
 	
 //	public String paginaRegistro(@ModelAttribute Turma turma, Model model, HttpServletRequest request) {
 ////		ModelAndView model = new ModelAndView("aula/registrar");
@@ -98,7 +118,7 @@ public class AulaController {
 		t.addAulas(aula);
 		aulaRepository.save(aula);
 		turmaRepository.saveAndFlush(t);
-		aulaRepository.saveAndFlush(aula);
+		aulaRepository.flush();
 		model.addAttribute("aula", aula);
 		model.addAttribute("turma", t);
 		return "aula/registrar-presenca";
@@ -110,12 +130,11 @@ public class AulaController {
 		List<Aluno> alunos =  aula.getAlunosPresentes();
 		aulaRepository.save(aula);
 		aulaRepository.flush();
-
 		for (Aluno aluno : alunos) {
 			aluno.addPresenca(aula);
 			alunoRepository.save(aluno);
 			alunoRepository.flush();
 		}
-		return "teste/index";
+		return "redirect:/turmas";
 	}
 }

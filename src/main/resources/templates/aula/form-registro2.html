@@ -2,21 +2,18 @@
 <html xmlns:th ="http://www.thymeleaf.org">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" th:href="@{/myCustom.css}">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <link rel="stylesheet" th:href="@{/myCustom.css}">
 <title>Registrar Aula</title>
 </head>
-<body class="bg-light">
+<body>
+
 	<nav class="navbar navbar-light bg-custom" id="bg-custom">
 	  <a class="navbar-brand mb-0 h1 text-light" th:href="@{/professor}">Cardeneta</a>
-	  <form class="form-inline" th:action="@{/logout}" method="POST">
-	    <button type="submit" class="btn btn-outline-light my-2 my-sm-0" th:href="@{/logout}" 
-	    		th:text="${session.professor != null ? 'logout, ' + session.professor.nome : session.aluno != null ? 'logout, ' + session.aluno.nome : 'sem sessao'}">
-	    </button>
+	  <form class="form-inline">
+	    <a class="btn btn-outline-light my-2 my-sm-0" th:href="@{/login}">Logout, <span th:text="${session.professor.nome}"></span></a>
 	  </form>
 	</nav>
-
 	<div class="container mt-5">
 	<div class="row">
 		<div class="col-1">
@@ -34,8 +31,11 @@
 			        <input class="form-control" id="date" name="date" placeholder="dd-MM-yyyy" type="datetime"/>
 			     </div>
 			     <div class="form-group"> 
-			        <label class="control-label" for="turma" >Código da turma</label>
-			        <input class="form-control" id="turma" name="turma" placeholder="Código da turma" th:value="${turma.codigo}"  type="text" readonly/>
+			        <label class="control-label" for="turma" >Escolha a turma</label><br>
+			         <select id="turma" name="turma" class="mt-1 form-control">
+						 <option th:each="turma : ${turmas}" th:text="${turma.codigo}+ ' - ' + ${turma.disciplina.nome}"
+						 th:value="${turma.codigo}"></option>
+					</select>
 			     </div>
 				  <button type="submit" class="btn btn-primary">Registrar</button>
 			</form>

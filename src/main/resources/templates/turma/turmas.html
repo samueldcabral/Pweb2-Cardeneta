@@ -5,12 +5,12 @@
 <link rel="stylesheet" th:href="@{/myCustom.css}">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <title>Listagem de turmas</title>
-<link rel="stylesheet" th:href="@{style.css}" />
+<link rel="stylesheet" th:href="@{/myCustom.css}">
 </head>
 <body>
-	
+
 	<nav class="navbar navbar-light bg-custom" id="bg-custom">
-	  <a class="navbar-brand mb-0 h1 text-light">Cardeneta</a>
+	  <a class="navbar-brand mb-0 h1 text-light" th:href="@{/professor}">Cardeneta</a>
 	  <form class="form-inline" th:action="@{/logout}" method="POST">
 	    <button type="submit" class="btn btn-outline-light my-2 my-sm-0" th:href="@{/logout}" 
 	    		th:text="${session.professor != null ? 'logout, ' + session.professor.nome : session.aluno != null ? 'logout, ' + session.aluno.nome : 'sem sessao'}">
@@ -18,7 +18,7 @@
 	  </form>
 	</nav>
 	
-	<h1 class="mx-auto text-center mt-5">Disciplinas</h1>
+	<h1 class="mx-auto text-center mt-5">Turmas cadastradas</h1>
 	
 	<div class="container">
 	
