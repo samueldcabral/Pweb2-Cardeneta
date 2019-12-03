@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th ="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" th:href="@{/myCustom.css}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<title>Registrar Aluno</title>
+</head>
+<body class="bg-light">
+<nav class="navbar navbar-light bg-custom" id="bg-custom">
+    <a class="navbar-brand mb-0 h1 text-light">Cardeneta</a>
+    <form class="form-inline" th:action="@{/logout}" method="POST">
+        <button type="submit" class="btn btn-outline-light my-2 my-sm-0" th:href="@{/logout}"
+                th:text="${session.professor != null ? 'logout, ' + session.professor.nome : session.aluno != null ? 'logout, ' + session.aluno.nome : 'sem sessao'}">
+        </button>
+    </form>
+</nav>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-2">
+        </div>
+        <div class="col-8">
+            <form th:action="@{/aluno}" method="POST" class="card p-5 m-auto">
+                <h3>Registrar Aluno</h3>
+                <hr>
+                <br>
+                <div class="form-group">
+                    <label for="nome">Nome</label>
+                    <input type="text" name="nome" class="form-control" th:value="*{nome}" placeholder="Nome do aluno" required autofocus />
+                </div>
+                <div class="form-group">
+                    <label for="matricula">Matrícula</label>
+                    <input type="text" name="matricula" class="form-control" th:value="*{matricula}" placeholder="Matrícula do aluno" required autofocus />
+                </div>
+<!--                <div class="form-group">-->
+<!--                    <label for="usuario_id">ID do Usuário</label>-->
+<!--                    <input type="text" name="usuario_id" class="form-control" th:value="*{usuario_id}" placeholder="ID do Usuário" type="text" readonly />-->
+<!--                </div>-->
+                <button type="submit" class="btn btn-primary">Salvar</button>
+            </form>
+        </div>
+        <div class="col-2">
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

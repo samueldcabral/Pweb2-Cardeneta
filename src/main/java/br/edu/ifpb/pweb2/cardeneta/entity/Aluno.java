@@ -12,6 +12,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name="TB_ALUNO")
@@ -22,8 +23,10 @@ public class Aluno implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
+//	@NotBlank(message = "Nome obrigatório")
 	private String nome;
+//	@NotBlank(message = "Matrícula obrigatória")
 	private String matricula;
 //	private String login;
 //	private String senha;

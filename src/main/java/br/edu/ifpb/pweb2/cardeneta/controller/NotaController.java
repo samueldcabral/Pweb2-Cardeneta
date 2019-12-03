@@ -61,13 +61,14 @@ public class NotaController {
 		model.addAttribute("turma", turma);
 		model.addAttribute("alunos", alunos);
 		model.addAttribute("notas", notas);
+		model.addAttribute("nota", new Nota(0));
 		return "turma/form-addnotas";
 	}
 	
 	@RequestMapping("/registrar-nota")
-	public String registrarNota(@ModelAttribute("nota") Nota nota, @ModelAttribute("aula") Aula aula) {
-		
-		System.out.println("FOIIIIII " + nota);
+	public String registrarNota(@ModelAttribute("nota") Nota nota, @ModelAttribute("turma") Turma turma) {
+		System.out.println("FOIIIIII " + nota.getNota());
+		System.out.println("FOIIIIII NOTAA " + turma.getNotas());
 //		List<Aluno> alunos =  aula.getAlunosPresentes();
 //		aulaRepository.flush();
 //		for (Aluno aluno : alunos) {
